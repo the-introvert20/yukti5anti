@@ -112,7 +112,7 @@
     }
   </script>
   <style>
-    /* Design System Core Styles */
+    /* ═══════════ DESIGN SYSTEM CORE ═══════════ */
     .glass-card {
       background: rgba(30, 32, 32, 0.4);
       backdrop-filter: blur(20px);
@@ -132,30 +132,84 @@
     .stagger-3 { animation-delay: 0.3s; }
     .stagger-4 { animation-delay: 0.4s; }
 
-    /* Page Transition Styles */
-    #page-content {
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-    #page-content.page-exit {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    #page-content.page-enter {
-      opacity: 0;
-      transform: translateY(8px);
+    /* ═══════════ THEME TRANSITION ═══════════ */
+    html, body, .yukti-main-nav, .glass-card, .mobile-menu,
+    #page-content, #page-loader, footer, section, nav, header {
+      transition: background-color 0.45s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
-    /* Main Nav Styles */
+    /* ═══════════ LIGHT THEME OVERRIDES ═══════════ */
+    html:not(.dark) body {
+      background: #f5f7f6 !important;
+      color: #1a1c1c !important;
+    }
+    html:not(.dark) .yukti-main-nav {
+      background: rgba(245, 247, 246, 0.75) !important;
+      box-shadow: 0 1px 20px rgba(0,0,0,0.08) !important;
+    }
+    html:not(.dark) .glass-card {
+      background: rgba(255, 255, 255, 0.55) !important;
+    }
+    html:not(.dark) .mist-gradient {
+      background: linear-gradient(to bottom, transparent, #f5f7f6) !important;
+    }
+    html:not(.dark) .text-glow {
+      text-shadow: 0 0 20px rgba(44, 105, 78, 0.2) !important;
+    }
+    html:not(.dark) .mobile-menu {
+      background: rgba(245, 247, 246, 0.97) !important;
+    }
+    html:not(.dark) .bg-surface { background-color: #f5f7f6 !important; }
+    html:not(.dark) .bg-surface-container { background-color: #eef1ef !important; }
+    html:not(.dark) .bg-surface-container-low { background-color: #f0f3f1 !important; }
+    html:not(.dark) .bg-surface-container-lowest { background-color: #ffffff !important; }
+    html:not(.dark) .bg-surface-container-high { background-color: #e4e7e5 !important; }
+    html:not(.dark) .bg-surface-container-highest { background-color: #dce0de !important; }
+    html:not(.dark) .bg-surface-bright { background-color: #f5f7f6 !important; }
+    html:not(.dark) .text-on-surface { color: #1a1c1c !important; }
+    html:not(.dark) .text-on-surface-variant { color: #404944 !important; }
+    html:not(.dark) .text-on-background { color: #1a1c1c !important; }
+    html:not(.dark) .text-primary { color: #2c694e !important; }
+    html:not(.dark) .text-tertiary { color: #006878 !important; }
+    html:not(.dark) .border-outline-variant\/10 { border-color: rgba(191,201,195,0.25) !important; }
+    html:not(.dark) .border-outline-variant\/20 { border-color: rgba(191,201,195,0.35) !important; }
+    html:not(.dark) .nav-link.active { color: #2c694e !important; }
+    html:not(.dark) .nav-link::after {
+      background: linear-gradient(90deg, transparent, #2c694e, transparent) !important;
+    }
+    html:not(.dark) ::-webkit-scrollbar-track { background: #f5f7f6; }
+    html:not(.dark) ::-webkit-scrollbar-thumb { background: #bfc9c3; }
+    html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #8a938d; }
+    /* Light footer */
+    html:not(.dark) footer { background: #e8ebe9 !important; border-color: rgba(44,105,78,0.1) !important; }
+    html:not(.dark) footer .text-zinc-500 { color: #5a6560 !important; }
+    html:not(.dark) footer .text-zinc-400 { color: #6b756f !important; }
+    html:not(.dark) footer .text-emerald-500 { color: #2c694e !important; }
+    html:not(.dark) footer .text-emerald-400 { color: #2c694e !important; }
+    html:not(.dark) footer a:hover { color: #0e5138 !important; }
+    /* Light nav text */
+    html:not(.dark) .text-emerald-400 { color: #2c694e !important; }
+    html:not(.dark) .text-emerald-100\/70 { color: rgba(30,60,45,0.7) !important; }
+    html:not(.dark) .text-emerald-100 { color: #1a1c1c !important; }
+    /* Light theme toggle icon color */
+    html:not(.dark) #theme-toggle-btn .material-symbols-outlined { color: #2c694e !important; }
+
+    /* ═══════════ PAGE TRANSITIONS ═══════════ */
+    #page-content {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      will-change: opacity, transform;
+    }
+    #page-content.page-exit { opacity: 0; transform: translateY(8px); }
+    #page-content.page-enter { opacity: 0; transform: translateY(8px); }
+
+    /* ═══════════ MAIN NAV ═══════════ */
     .yukti-main-nav {
       background: rgba(6, 40, 28, 0.65);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       box-shadow: 0 0 40px rgba(149, 212, 179, 0.06);
     }
-    .nav-link {
-      position: relative;
-      padding: 0.5rem 0;
-    }
+    .nav-link { position: relative; padding: 0.5rem 0; }
     .nav-link::after {
       content: '';
       position: absolute;
@@ -167,91 +221,344 @@
       background: linear-gradient(90deg, transparent, #95d4b3, transparent);
       transition: transform 0.3s ease;
     }
-    .nav-link:hover::after,
-    .nav-link.active::after {
-      transform: translateX(-50%) scaleX(1);
-    }
-    .nav-link.active {
-      color: #95d4b3 !important;
-    }
+    .nav-link:hover::after, .nav-link.active::after { transform: translateX(-50%) scaleX(1); }
+    .nav-link.active { color: #95d4b3 !important; }
 
-    /* Scrollbar */
+    /* ═══════════ SCROLLBAR ═══════════ */
+    html, body { overflow-x: hidden; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #121414; }
     ::-webkit-scrollbar-thumb { background: #404944; border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #8a938d; }
 
-    /* Loading spinner */
+    /* ═══════════ LOADER ═══════════ */
     .yukti-loader {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       border: 3px solid #1e2020;
       border-top-color: #95d4b3;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Mobile nav */
+    /* ═══════════ MOBILE NAV ═══════════ */
     .mobile-menu {
       transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .mobile-menu.open {
-      transform: translateX(0);
+    .mobile-menu.open { transform: translateX(0); }
+
+    /* ═══════════ THEME TOGGLE BUTTON ═══════════ */
+    .theme-toggle {
+      position: relative;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden;
     }
+    .theme-toggle:hover { background: rgba(149, 212, 179, 0.12); }
+    .theme-toggle .icon-sun, .theme-toggle .icon-moon {
+      position: absolute;
+      transition: transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6), opacity 0.3s ease;
+    }
+    .dark .theme-toggle .icon-sun { transform: rotate(0deg) scale(1); opacity: 1; }
+    .dark .theme-toggle .icon-moon { transform: rotate(90deg) scale(0); opacity: 0; }
+    html:not(.dark) .theme-toggle .icon-sun { transform: rotate(-90deg) scale(0); opacity: 0; }
+    html:not(.dark) .theme-toggle .icon-moon { transform: rotate(0deg) scale(1); opacity: 1; }
+
+    /* ═══════════ CHATBOT STYLES ═══════════ */
+    /* FAB */
+    .chat-fab {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #95d4b3, #074d34);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 300;
+      box-shadow: 0 4px 24px rgba(149, 212, 179, 0.35), 0 0 0 0 rgba(149, 212, 179, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fab-pulse 2.5s ease-in-out infinite;
+    }
+    .chat-fab:hover { transform: scale(1.1); box-shadow: 0 6px 32px rgba(149, 212, 179, 0.5); }
+    .chat-fab:active { transform: scale(0.95); }
+    .chat-fab.hidden-fab { transform: scale(0); pointer-events: none; }
+    @keyframes fab-pulse {
+      0%, 100% { box-shadow: 0 4px 24px rgba(149, 212, 179, 0.35), 0 0 0 0 rgba(149, 212, 179, 0.4); }
+      50% { box-shadow: 0 4px 24px rgba(149, 212, 179, 0.35), 0 0 0 12px rgba(149, 212, 179, 0); }
+    }
+    .chat-fab .material-symbols-outlined { color: #003824; font-size: 28px; }
+
+    /* Chat Panel */
+    .chat-panel {
+      position: fixed;
+      bottom: 92px; right: 24px;
+      width: 400px;
+      max-height: 580px;
+      border-radius: 24px;
+      z-index: 310;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      transform: translateY(20px) scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      background: rgba(13, 15, 15, 0.88);
+      border: 1px solid rgba(64, 73, 68, 0.3);
+      box-shadow: 0 16px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(149, 212, 179, 0.06);
+    }
+    .chat-panel.open {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    html:not(.dark) .chat-panel {
+      background: rgba(245, 247, 246, 0.92) !important;
+      border-color: rgba(191,201,195,0.4) !important;
+      box-shadow: 0 16px 64px rgba(0,0,0,0.12), 0 0 0 1px rgba(44,105,78,0.08) !important;
+    }
+
+    /* Chat header */
+    .chat-header {
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+      border-bottom: 1px solid rgba(64, 73, 68, 0.2);
+      flex-shrink: 0;
+    }
+    .chat-header-avatar {
+      width: 36px; height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #074d34, #2c694e);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .chat-header-avatar .material-symbols-outlined { color: #95d4b3; font-size: 20px; }
+
+    /* Messages area */
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+      min-height: 200px;
+      max-height: 340px;
+      scroll-behavior: smooth;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-thumb { background: #404944; border-radius: 2px; }
+
+    /* Message bubbles */
+    .msg-bubble {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      animation: msg-appear 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      opacity: 0;
+      word-wrap: break-word;
+    }
+    @keyframes msg-appear {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .msg-user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #074d34, #0e5138);
+      color: #b1f0ce;
+      border-bottom-right-radius: 6px;
+    }
+    html:not(.dark) .msg-user {
+      background: linear-gradient(135deg, #2c694e, #1B6B4A) !important;
+      color: #ffffff !important;
+    }
+    .msg-ai {
+      align-self: flex-start;
+      background: rgba(30, 32, 32, 0.6);
+      color: #e2e2e2;
+      border-bottom-left-radius: 6px;
+    }
+    html:not(.dark) .msg-ai {
+      background: rgba(238, 241, 239, 0.8) !important;
+      color: #1a1c1c !important;
+    }
+
+    /* Typing indicator */
+    .typing-dots {
+      display: flex; gap: 4px; padding: 12px 16px;
+      align-self: flex-start;
+      background: rgba(30, 32, 32, 0.6);
+      border-radius: 16px; border-bottom-left-radius: 6px;
+    }
+    html:not(.dark) .typing-dots {
+      background: rgba(238,241,239,0.8) !important;
+    }
+    .typing-dots span {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #95d4b3;
+      animation: dot-bounce 1.4s ease-in-out infinite;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes dot-bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    /* Suggested questions */
+    .chat-suggestions {
+      padding: 8px 16px 4px;
+      display: flex; flex-wrap: wrap; gap: 6px;
+      flex-shrink: 0;
+    }
+    .suggest-chip {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      background: rgba(149, 212, 179, 0.08);
+      border: 1px solid rgba(149, 212, 179, 0.15);
+      color: #95d4b3;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .suggest-chip:hover {
+      background: rgba(149, 212, 179, 0.18);
+      border-color: rgba(149, 212, 179, 0.35);
+      transform: translateY(-1px);
+    }
+    html:not(.dark) .suggest-chip {
+      background: rgba(44, 105, 78, 0.06) !important;
+      border-color: rgba(44, 105, 78, 0.2) !important;
+      color: #2c694e !important;
+    }
+    html:not(.dark) .suggest-chip:hover {
+      background: rgba(44, 105, 78, 0.14) !important;
+    }
+
+    /* Chat input */
+    .chat-input-bar {
+      padding: 12px 16px;
+      border-top: 1px solid rgba(64, 73, 68, 0.2);
+      display: flex; gap: 8px; align-items: center;
+      flex-shrink: 0;
+    }
+    .chat-input-bar input {
+      flex: 1;
+      background: rgba(30, 32, 32, 0.5);
+      border: 1px solid rgba(64, 73, 68, 0.3);
+      border-radius: 14px;
+      padding: 10px 14px;
+      color: #e2e2e2;
+      font-size: 13.5px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+    .chat-input-bar input:focus {
+      border-color: rgba(149, 212, 179, 0.4);
+      background: rgba(30, 32, 32, 0.7);
+    }
+    .chat-input-bar input::placeholder { color: #8a938d; }
+    html:not(.dark) .chat-input-bar input {
+      background: rgba(238,241,239,0.7) !important;
+      color: #1a1c1c !important;
+      border-color: rgba(191,201,195,0.4) !important;
+    }
+    html:not(.dark) .chat-input-bar input::placeholder { color: #8a938d !important; }
+    .chat-send-btn {
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #95d4b3, #074d34);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      flex-shrink: 0;
+      border: none;
+    }
+    .chat-send-btn:hover { transform: scale(1.08); }
+    .chat-send-btn:active { transform: scale(0.92); }
+    .chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .chat-send-btn .material-symbols-outlined { color: #003824; font-size: 20px; }
+
+    /* ═══════════ MOBILE CHAT ═══════════ */
+    @media (max-width: 640px) {
+      .chat-panel {
+        right: 0; left: 0; bottom: 0;
+        width: 100%;
+        max-height: 85vh;
+        border-radius: 24px 24px 0 0;
+        transform: translateY(100%) scale(1);
+      }
+      .chat-panel.open { transform: translateY(0) scale(1); }
+      .chat-fab { bottom: 16px; right: 16px; width: 52px; height: 52px; }
+    }
+
+    /* ═══════════ STABILITY FIXES ═══════════ */
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+    img { max-width: 100%; height: auto; }
+    .animate-fade-up, [class*="stagger-"] { will-change: opacity, transform; }
   </style>
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-primary selection:text-on-primary overflow-x-hidden">
 
   <!-- ═══════════ GLOBAL NAVIGATION ═══════════ -->
-  <nav id="main-nav" class="yukti-main-nav fixed top-0 w-full px-6 py-3 flex justify-between items-center z-[100] animate-nav-slide">
-    <a href="#landing" class="flex items-center gap-2 group">
+  <nav id="main-nav" class="yukti-main-nav fixed top-0 w-full px-4 sm:px-6 py-3 flex justify-between items-center z-[100] animate-nav-slide">
+    <a href="#landing" class="flex items-center gap-2 group flex-shrink-0">
       <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center group-hover:scale-110 transition-transform">
         <span class="material-symbols-outlined text-on-primary text-xl">eco</span>
       </div>
-      <span class="text-2xl font-black text-primary tracking-tighter font-headline">YUKTI</span>
+      <span class="text-2xl font-black text-primary tracking-tighter font-headline hidden sm:inline">YUKTI</span>
     </a>
 
     <!-- Desktop Navigation -->
-    <div class="hidden lg:flex gap-1 items-center bg-surface-container-lowest/50 rounded-full px-2 py-1">
-      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#landing" data-page="landing">
-        <span class="material-symbols-outlined text-base align-middle mr-1">home</span>Home
+    <div class="hidden lg:flex gap-1 items-center bg-surface-container-lowest/50 rounded-full px-2 py-1 flex-shrink min-w-0 overflow-x-auto">
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-3 xl:px-4 py-2 rounded-full hover:bg-surface-container whitespace-nowrap" href="#landing" data-page="landing">
+        <span class="material-symbols-outlined text-base align-middle mr-0.5">home</span>Home
       </a>
-      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#dashboard" data-page="dashboard">
-        <span class="material-symbols-outlined text-base align-middle mr-1">dashboard</span>Dashboard
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-3 xl:px-4 py-2 rounded-full hover:bg-surface-container whitespace-nowrap" href="#dashboard" data-page="dashboard">
+        <span class="material-symbols-outlined text-base align-middle mr-0.5">dashboard</span>Dashboard
       </a>
-      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#quiz" data-page="quiz">
-        <span class="material-symbols-outlined text-base align-middle mr-1">quiz</span>Quiz
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-3 xl:px-4 py-2 rounded-full hover:bg-surface-container whitespace-nowrap" href="#quiz" data-page="quiz">
+        <span class="material-symbols-outlined text-base align-middle mr-0.5">quiz</span>Quiz
       </a>
-      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#games" data-page="games">
-        <span class="material-symbols-outlined text-base align-middle mr-1">videogame_asset</span>Games
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-3 xl:px-4 py-2 rounded-full hover:bg-surface-container whitespace-nowrap" href="#games" data-page="games">
+        <span class="material-symbols-outlined text-base align-middle mr-0.5">videogame_asset</span>Games
       </a>
-      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#map" data-page="map">
-        <span class="material-symbols-outlined text-base align-middle mr-1">explore</span>Map
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-3 xl:px-4 py-2 rounded-full hover:bg-surface-container whitespace-nowrap" href="#map" data-page="map">
+        <span class="material-symbols-outlined text-base align-middle mr-0.5">explore</span>Map
       </a>
-      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#progress" data-page="progress">
-        <span class="material-symbols-outlined text-base align-middle mr-1">trending_up</span>Progress
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-3 xl:px-4 py-2 rounded-full hover:bg-surface-container whitespace-nowrap" href="#progress" data-page="progress">
+        <span class="material-symbols-outlined text-base align-middle mr-0.5">trending_up</span>Progress
       </a>
-      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#teacher" data-page="teacher">
-        <span class="material-symbols-outlined text-base align-middle mr-1">school</span>Teacher
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-3 xl:px-4 py-2 rounded-full hover:bg-surface-container whitespace-nowrap" href="#teacher" data-page="teacher">
+        <span class="material-symbols-outlined text-base align-middle mr-0.5">school</span>Teacher
       </a>
-      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#chatbot" data-page="chatbot">
-        <span class="material-symbols-outlined text-base align-middle mr-1">smart_toy</span>AI
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-3 xl:px-4 py-2 rounded-full hover:bg-surface-container whitespace-nowrap" href="#chatbot" data-page="chatbot">
+        <span class="material-symbols-outlined text-base align-middle mr-0.5">smart_toy</span>AI
       </a>
     </div>
 
-    <!-- Profile + Mobile Toggle -->
-    <div class="flex items-center gap-3">
+    <!-- Right side: Theme toggle + Profile + Mobile Toggle -->
+    <div class="flex items-center gap-2 flex-shrink-0">
+      <!-- Theme Toggle -->
+      <button id="theme-toggle-btn" class="theme-toggle" title="Toggle theme">
+        <span class="material-symbols-outlined icon-sun text-primary" style="font-size:20px;">light_mode</span>
+        <span class="material-symbols-outlined icon-moon text-primary" style="font-size:20px;">dark_mode</span>
+      </button>
       <button class="text-primary hover:bg-primary/10 transition-all duration-300 p-2 rounded-full animate-glow hidden lg:block">
         <span class="material-symbols-outlined">notifications</span>
       </button>
       <div class="w-9 h-9 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20 hover:border-primary/50 transition-colors hidden lg:block">
         <img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUElCzflXRj02J6oSUd3hE0ksIaNI0rSKUi4GG_BJUSXOpk7EQkUwrjS_d4kwZIwO5QUmF1O4twwCpS_RlQtZXliOUUqGh_FZ_dr4AT4EasF8DMeXg-maa3-Z1VnHb6tG0-277RNgLnU1P8VJdEtHBN1ILLXUzq_8npHBvN2_clYDIxZcfTeLbT20uohoAKglxtuV7ShcE7JizGCQqnn1mgeioLIdFxaJ133idf0CaxAP56xSSagLmmpGtmu4o_9wul8Oc5_CrnA"/>
       </div>
-      <!-- Mobile hamburger -->
       <button id="mobile-toggle" class="lg:hidden p-2 rounded-xl hover:bg-surface-container transition-colors">
         <span class="material-symbols-outlined text-on-surface">menu</span>
       </button>
@@ -316,8 +623,83 @@
     <!-- Dynamic page content loaded here -->
   </main>
 
-  <!-- ═══════════ ROUTER SCRIPT ═══════════ -->
+  <!-- ═══════════ GLOBAL CHATBOT FAB ═══════════ -->
+  <button id="chat-fab" class="chat-fab" title="Chat with Yukti AI" aria-label="Open Yukti AI Chat">
+    <span class="material-symbols-outlined" id="fab-icon">chat</span>
+  </button>
+
+  <!-- ═══════════ GLOBAL CHATBOT PANEL ═══════════ -->
+  <div id="chat-panel" class="chat-panel">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="chat-header-avatar">
+        <span class="material-symbols-outlined">eco</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="font-headline font-bold text-sm text-on-surface" style="line-height:1.2;">Yukti AI</div>
+        <div class="text-xs text-on-surface-variant">Your Himalayan Guide</div>
+      </div>
+      <button id="chat-clear" class="p-1.5 rounded-lg hover:bg-surface-container transition-colors" title="Clear chat">
+        <span class="material-symbols-outlined text-on-surface-variant" style="font-size:18px;">delete_sweep</span>
+      </button>
+      <button id="chat-close" class="p-1.5 rounded-lg hover:bg-surface-container transition-colors" title="Close">
+        <span class="material-symbols-outlined text-on-surface-variant" style="font-size:18px;">close</span>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div id="chat-messages" class="chat-messages">
+      <div class="msg-bubble msg-ai" style="animation-delay:0.1s;">
+        🏔️ Namaste, Explorer! I'm <strong>Yukti</strong>, your Himalayan guide. Ask me anything about Uttarakhand's ecology, wildlife, rivers, or conservation!
+      </div>
+    </div>
+
+    <!-- Suggested Questions -->
+    <div id="chat-suggestions" class="chat-suggestions">
+      <button class="suggest-chip" data-q="Tell me about the Valley of Flowers">🌸 Valley of Flowers</button>
+      <button class="suggest-chip" data-q="What animals live in Jim Corbett National Park?">🐅 Jim Corbett Wildlife</button>
+      <button class="suggest-chip" data-q="How does the Chipko Movement help conservation?">🌿 Chipko Movement</button>
+      <button class="suggest-chip" data-q="What are the major rivers of Uttarakhand?">🏞️ Uttarakhand Rivers</button>
+    </div>
+
+    <!-- Input -->
+    <div class="chat-input-bar">
+      <input type="text" id="chat-input" placeholder="Ask about Uttarakhand..." autocomplete="off"/>
+      <button id="chat-send" class="chat-send-btn" title="Send">
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════ ALL SCRIPTS ═══════════ -->
   <script>
+    // ─── CONFIG ───
+    const GROQ_API_KEY = 'YOUR_GROQ_API_KEY_HERE'; // Replace with a valid key for local dev
+    const GROQ_MODEL = 'llama-3.3-70b-versatile';
+    const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+    const YUKTI_SYSTEM_PROMPT = `You are Yukti AI, the intelligent guide for the YUKTI platform — an AI-based gamified environmental learning platform for Uttarakhand, India.
+
+Your personality: Friendly, knowledgeable, inspiring, and passionate about nature and conservation. You speak like a wise mountain guide who loves sharing knowledge.
+
+You help students learn about:
+- Uttarakhand's ecology, flora, and fauna (snow leopards, musk deer, Himalayan monal, etc.)
+- The Himalayan mountain range, glaciers (Gangotri, Yamunotri), and geography
+- Rivers of Uttarakhand (Ganga, Yamuna, Alaknanda, Bhagirathi, etc.)
+- Wildlife and national parks (Jim Corbett, Valley of Flowers, Nanda Devi Biosphere, Rajaji)
+- Climate change impact on the Himalayas
+- Conservation efforts (Chipko Movement, reforestation, water conservation)
+- Local culture, traditions, and dialects of Garhwal and Kumaon
+- Student learning, quizzes, and environmental challenges
+
+Rules:
+- Keep responses concise (2-4 paragraphs max) but informative
+- Use emojis sparingly for warmth (🏔️ 🌿 🦌 🌊)
+- Encourage environmental stewardship
+- If asked about non-Uttarakhand topics, gently redirect to environmental learning
+- Be encouraging and supportive to students`;
+
+    // ─── PAGES / ROUTER ───
     const pages = {
       landing: '/pages/landing.html',
       dashboard: '/pages/dashboard.html',
@@ -334,14 +716,11 @@
     const loaderEl = document.getElementById('page-loader');
     let currentPage = null;
 
-    // Extract body content from full HTML page
     function extractBody(html) {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
-      // Remove the page's own nav (we have global nav)
       const navElements = doc.querySelectorAll('nav');
       navElements.forEach(n => {
-        // Only remove nav if it's a top-level fixed nav
         if (n.classList.contains('fixed') && n.closest('body') === doc.body) {
           n.remove();
         }
@@ -349,26 +728,17 @@
       return doc.body.innerHTML;
     }
 
-    // Extract and run scripts from HTML
     function executeScripts(container) {
       const scripts = container.querySelectorAll('script');
       scripts.forEach(oldScript => {
         const newScript = document.createElement('script');
-        if (oldScript.src) {
-          newScript.src = oldScript.src;
-        } else {
-          newScript.textContent = oldScript.textContent;
-        }
+        if (oldScript.src) { newScript.src = oldScript.src; }
+        else { newScript.textContent = oldScript.textContent; }
         oldScript.parentNode.replaceChild(newScript, oldScript);
       });
     }
 
-    // Re-initialize intersection observers for scroll animations
     function initScrollAnimations() {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -376,35 +746,23 @@
             entry.target.classList.remove('opacity-0');
           }
         });
-      }, observerOptions);
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
       document.querySelectorAll('#page-content .opacity-0').forEach(el => observer.observe(el));
     }
 
-    // Load a page
     async function loadPage(pageName) {
       if (pageName === currentPage) return;
       if (!pages[pageName]) pageName = 'landing';
-
       currentPage = pageName;
 
-      // Page exit animation
       contentEl.classList.add('page-exit');
-
-      // Show loader for uncached pages
-      let showLoader = false;
-      if (!pageCache[pageName]) {
-        showLoader = true;
-        setTimeout(() => {
-          if (showLoader) {
-            loaderEl.style.display = 'flex';
-          }
-        }, 200);
+      let showLoader = !pageCache[pageName];
+      if (showLoader) {
+        setTimeout(() => { if (showLoader) loaderEl.style.display = 'flex'; }, 200);
       }
 
-      // Wait for exit animation
       await new Promise(r => setTimeout(r, 350));
 
-      // Fetch page if not cached
       if (!pageCache[pageName]) {
         try {
           const resp = await fetch(pages[pageName]);
@@ -417,54 +775,35 @@
 
       showLoader = false;
       loaderEl.style.display = 'none';
-
-      // Insert content
       contentEl.innerHTML = pageCache[pageName];
-
-      // Execute inline scripts
       executeScripts(contentEl);
-
-      // Reset scroll
       window.scrollTo({ top: 0, behavior: 'instant' });
 
-      // Page enter animation
       contentEl.classList.remove('page-exit');
       contentEl.classList.add('page-enter');
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          contentEl.classList.remove('page-enter');
-        });
+        requestAnimationFrame(() => { contentEl.classList.remove('page-enter'); });
       });
 
-      // Re-init scroll animations
       setTimeout(initScrollAnimations, 100);
-
-      // Update active nav link
       updateActiveNav(pageName);
-
-      // Close mobile menu if open
       closeMobileMenu();
     }
 
-    // Update active nav link styling
     function updateActiveNav(pageName) {
       document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
         link.classList.remove('active');
-        if (link.dataset.page === pageName) {
-          link.classList.add('active');
-        }
+        if (link.dataset.page === pageName) link.classList.add('active');
       });
     }
 
-    // Hash-based routing
     function handleRoute() {
       const hash = window.location.hash.slice(1) || 'landing';
       loadPage(hash);
     }
-
     window.addEventListener('hashchange', handleRoute);
 
-    // Mobile menu
+    // ─── MOBILE MENU ───
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileOverlay = document.getElementById('mobile-overlay');
     const mobileToggle = document.getElementById('mobile-toggle');
@@ -476,33 +815,199 @@
       requestAnimationFrame(() => { mobileOverlay.style.opacity = '1'; });
       document.body.style.overflow = 'hidden';
     }
-
     function closeMobileMenu() {
       mobileMenu.classList.remove('open');
       mobileOverlay.style.opacity = '0';
       setTimeout(() => { mobileOverlay.style.display = 'none'; }, 300);
       document.body.style.overflow = '';
     }
-
     mobileToggle.addEventListener('click', openMobileMenu);
     mobileClose.addEventListener('click', closeMobileMenu);
     mobileOverlay.addEventListener('click', closeMobileMenu);
 
-    // Nav hide/show on scroll
+    // ─── NAV HIDE/SHOW ON SCROLL ───
     let lastScroll = 0;
     const mainNav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll > lastScroll && currentScroll > 80) {
+      const s = window.pageYOffset;
+      if (s > lastScroll && s > 80) {
         mainNav.style.transform = 'translateY(-100%)';
         mainNav.style.transition = 'transform 0.35s ease';
       } else {
         mainNav.style.transform = 'translateY(0)';
       }
-      lastScroll = currentScroll;
+      lastScroll = s;
     });
 
-    // Initial load
+    // ─── THEME TOGGLE ───
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    function setTheme(dark) {
+      if (dark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      localStorage.setItem('yukti-theme', dark ? 'dark' : 'light');
+    }
+    // Restore saved preference
+    const saved = localStorage.getItem('yukti-theme');
+    if (saved === 'light') { setTheme(false); }
+    else { setTheme(true); }
+
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setTheme(!isDark);
+    });
+
+    // ─── CHATBOT ───
+    const chatFab = document.getElementById('chat-fab');
+    const chatPanel = document.getElementById('chat-panel');
+    const chatClose = document.getElementById('chat-close');
+    const chatClear = document.getElementById('chat-clear');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatSuggestions = document.getElementById('chat-suggestions');
+    const fabIcon = document.getElementById('fab-icon');
+    let chatOpen = false;
+    let isStreaming = false;
+    let chatHistory = [];
+
+    function toggleChat() {
+      chatOpen = !chatOpen;
+      if (chatOpen) {
+        chatPanel.classList.add('open');
+        chatFab.classList.add('hidden-fab');
+        chatInput.focus();
+      } else {
+        chatPanel.classList.remove('open');
+        chatFab.classList.remove('hidden-fab');
+      }
+    }
+
+    chatFab.addEventListener('click', toggleChat);
+    chatClose.addEventListener('click', toggleChat);
+
+    chatClear.addEventListener('click', () => {
+      chatHistory = [];
+      chatMessages.innerHTML = `<div class="msg-bubble msg-ai" style="animation-delay:0.1s;">
+        🏔️ Namaste, Explorer! I'm <strong>Yukti</strong>, your Himalayan guide. Ask me anything about Uttarakhand's ecology, wildlife, rivers, or conservation!
+      </div>`;
+      chatSuggestions.style.display = 'flex';
+    });
+
+    function scrollChat() {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addMessage(text, isUser) {
+      const div = document.createElement('div');
+      div.className = `msg-bubble ${isUser ? 'msg-user' : 'msg-ai'}`;
+      div.innerHTML = text;
+      chatMessages.appendChild(div);
+      scrollChat();
+    }
+
+    function showTyping() {
+      const div = document.createElement('div');
+      div.className = 'typing-dots';
+      div.id = 'typing-indicator';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      chatMessages.appendChild(div);
+      scrollChat();
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('typing-indicator');
+      if (t) t.remove();
+    }
+
+    async function sendMessage(text) {
+      if (!text.trim() || isStreaming) return;
+      isStreaming = true;
+      chatSend.disabled = true;
+
+      // Hide suggestions after first user message
+      chatSuggestions.style.display = 'none';
+
+      addMessage(text, true);
+      chatInput.value = '';
+
+      // Add to history (OpenAI format for Groq)
+      chatHistory.push({ role: 'user', content: text });
+
+      showTyping();
+
+      try {
+        const body = {
+          model: GROQ_MODEL,
+          messages: [
+            { role: 'system', content: YUKTI_SYSTEM_PROMPT },
+            ...chatHistory
+          ],
+          temperature: 0.7,
+          max_tokens: 800,
+          top_p: 0.9
+        };
+
+        const resp = await fetch(GROQ_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${GROQ_API_KEY}`
+          },
+          body: JSON.stringify(body)
+        });
+
+        removeTyping();
+
+        if (!resp.ok) {
+          const errData = await resp.json().catch(() => ({}));
+          const errMsg = errData.error?.message || '';
+          if (resp.status === 429) {
+            throw new Error('Rate limit reached. Please wait a moment and try again.');
+          }
+          throw new Error(errMsg || `API error ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        const aiText = data.choices?.[0]?.message?.content || 'I couldn\'t generate a response. Please try again!';
+
+        // Format markdown-like text to HTML
+        const formattedText = aiText
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')
+          .replace(/\n\n/g, '<br/><br/>')
+          .replace(/\n/g, '<br/>');
+
+        addMessage(formattedText, false);
+        chatHistory.push({ role: 'assistant', content: aiText });
+
+      } catch (err) {
+        removeTyping();
+        addMessage(`⚠️ <em>${err.message || 'Connection error. Please try again.'}</em>`, false);
+      }
+
+      isStreaming = false;
+      chatSend.disabled = false;
+      chatInput.focus();
+    }
+
+    chatSend.addEventListener('click', () => sendMessage(chatInput.value));
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage(chatInput.value);
+      }
+    });
+
+    // Suggested questions
+    chatSuggestions.addEventListener('click', (e) => {
+      const chip = e.target.closest('.suggest-chip');
+      if (chip) sendMessage(chip.dataset.q);
+    });
+
+    // ─── INIT ───
     handleRoute();
   </script>
 </body>
