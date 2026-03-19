@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#690005",
+                        "surface-container-high": "#282a2a",
+                        "surface-bright": "#383939",
+                        "primary-fixed-dim": "#95d4b3",
+                        "secondary-container": "#29513f",
+                        "surface-variant": "#333535",
+                        "surface-container": "#1e2020",
+                        "on-secondary": "#0e3727",
+                        "tertiary": "#58d6f1",
+                        "surface-container-highest": "#333535",
+                        "surface-dim": "#121414",
+                        "on-primary-fixed": "#002114",
+                        "outline-variant": "#404944",
+                        "outline": "#8a938d",
+                        "on-tertiary": "#00363f",
+                        "on-primary-fixed-variant": "#0e5138",
+                        "tertiary-fixed-dim": "#58d6f1",
+                        "surface-container-lowest": "#0d0f0f",
+                        "on-primary-container": "#7fbd9d",
+                        "primary-fixed": "#b1f0ce",
+                        "on-tertiary-fixed": "#001f25",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#004e5b",
+                        "primary-container": "#074d34",
+                        "surface-tint": "#95d4b3",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-container-low": "#1a1c1c",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#a7edff",
+                        "tertiary-container": "#004a56",
+                        "on-background": "#e2e2e2",
+                        "surface": "#121414",
+                        "inverse-on-surface": "#2f3131",
+                        "on-tertiary-container": "#38bfd9",
+                        "on-secondary-fixed": "#002114",
+                        "on-error-container": "#ffdad6",
+                        "on-primary": "#003824",
+                        "background": "#121414",
+                        "secondary-fixed-dim": "#a5d0b9",
+                        "primary": "#95d4b3",
+                        "inverse-primary": "#2c694e",
+                        "on-surface": "#e2e2e2",
+                        "secondary": "#a5d0b9",
+                        "on-secondary-container": "#97c2ab",
+                        "on-surface-variant": "#bfc9c3",
+                        "secondary-fixed": "#c1ecd4",
+                        "on-secondary-fixed-variant": "#274e3d"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes celebrate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(149, 212, 179, 0.4); }
+            100% { transform: scale(1); }
+        }
+        @keyframes pulse-timer {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        .animate-fade-up {
+            animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .animate-celebrate {
+            animation: celebrate 2s infinite ease-in-out;
+        }
+        .animate-pulse-timer {
+            animation: pulse-timer 2s infinite ease-in-out;
+        }
+        .progress-bar-fill {
+            transition: width 1s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(30, 32, 32, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full px-6 py-4 flex justify-between items-center bg-emerald-950/40 backdrop-blur-xl z-50 shadow-[0_0_40px_rgba(226,226,226,0.06)] font-['Manrope'] tracking-tight">
+<div class="text-2xl font-black text-emerald-400 tracking-tighter">YUKTI</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-emerald-100/70 hover:text-emerald-100 hover:bg-emerald-800/30 transition-all duration-300 px-3 py-1 rounded" href="#">Quests</a>
+<a class="text-emerald-100/70 hover:text-emerald-100 hover:bg-emerald-800/30 transition-all duration-300 px-3 py-1 rounded" href="#">Map</a>
+<a class="text-emerald-300 font-bold border-b-2 border-emerald-400 pb-1 scale-95 active:scale-90 transition-all" href="#">Games</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-emerald-400" data-icon="eco">eco</span>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant/20 overflow-hidden">
+<img alt="Student Profile Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQSDzrclOl2p_ZVZGuTN3PFyEJshiCM_KhxxPI22-z8MyjavHIJm8OhcBaOih8MkSq_AmbXiSSaan2MkjwjBMe2ErXWbIpmfuTnOwLUSbSLP5UDIgl5svD0SFV2bW90hHB-XgqBRLjePI_2VbXBLFOINcuigMHGfIpZuZX-aF2Z_GNghmEzX3b1QULv4duSrwmslpSjDrLS1JYThxcuMgfVzdd0hlq4WohJBqB3sl9tyL7WXhMZkmGzkRiCVRXPtk5tO0ciGjrKA"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen w-64 fixed left-0 top-0 py-8 px-4 bg-zinc-950/60 backdrop-blur-2xl z-40 font-['Inter'] leading-relaxed pt-24">
+<div class="mb-8 px-4">
+<h2 class="text-xl font-bold text-emerald-500">Garhwal Explorer</h2>
+<p class="text-zinc-400 text-sm">Level 12 Forest Guard</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span>Quests</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span>Map</span>
+</a>
+<a class="flex items-center gap-3 bg-emerald-500/20 text-emerald-300 rounded-lg px-4 py-3 border-l-4 border-emerald-400" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span>Games</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 transition-transform duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span>Progress</span>
+</a>
+</nav>
+<button class="mt-auto bg-primary-container text-primary px-4 py-3 rounded-xl font-bold hover:brightness-110 transition-all">
+            View Leaderboard
+        </button>
+</aside>
+<main class="lg:ml-64 pt-24 pb-12 min-h-screen relative overflow-hidden">
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20">
+<img alt="Forest Canopy Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-6IBWcH3MuaeBJrpQtBDIQ5PJs-Zrs5I3nx2hsWj31Mu0fAga09BUXenfsDEbFuqFvrAtYxIK4spXndLXzCSA7rZrVkayOwENSV8kptS80TOrgEmcnK41Rg9w6Q5Q9U9pvGMWzTV78CqqOuVjCE2IIXEGuijVi4G8bJ2GKdQP8AVqjHDg5pXhuNsC46k13frZMu0FerapfJhFHlLx2sR-rGKont0L1BUJEyt0nM1Q7-M37147vEvMDWypAdMVUOzcSFOPpeRRiQ"/>
+<div class="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
+</div>
+<div class="max-w-4xl mx-auto px-6 relative z-10">
+<!-- Progress & Stats Header -->
+<div class="flex flex-col gap-6 mb-12 animate-fade-up">
+<div class="flex justify-between items-end">
+<div>
+<span class="label-md text-tertiary font-bold tracking-[0.1em] uppercase text-xs">Current Mission</span>
+<h1 class="font-headline text-3xl font-extrabold text-on-surface">Avian Recognition</h1>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-low px-4 py-2 rounded-full shadow-inner animate-pulse-timer transition-all duration-500">
+<span class="material-symbols-outlined text-tertiary text-xl" data-icon="timer">timer</span>
+<span class="font-mono text-tertiary-fixed font-bold">14:52</span>
+<div class="h-4 w-[1px] bg-outline-variant/30 mx-2"></div>
+<span class="text-primary font-bold">+450 pts</span>
+</div>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden flex">
+<div class="h-full bg-tertiary progress-bar-fill shadow-[0_0_15px_rgba(88,214,241,0.3)]" style="width: 30%;"></div>
+</div>
+<div class="flex justify-between text-xs text-outline font-medium">
+<span>Question 3 of 10</span>
+<span>30% Complete</span>
+</div>
+</div>
+<!-- Quiz Main Card -->
+<div class="glass-panel rounded-3xl p-8 md:p-12 mb-8 shadow-[0_0_40px_rgba(226,226,226,0.06)] border border-outline-variant/10 relative animate-fade-up" style="animation-delay: 0.1s">
+<div class="absolute -top-3 left-10 bg-primary-container text-on-primary-container px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                    Knowledge Check
+                </div>
+<h2 class="font-headline text-2xl md:text-4xl font-bold leading-tight mb-12 text-on-surface">
+                    Which animal is the state bird of Uttarakhand?
+                </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Option A -->
+<button class="group flex items-center gap-4 p-6 rounded-2xl bg-surface-container hover:bg-surface-bright transition-all duration-300 text-left border border-outline-variant/5 animate-fade-up" style="animation-delay: 0.2s">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary group-hover:shadow-[0_0_15px_rgba(149,212,179,0.3)] transition-all">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+</div>
+<div>
+<span class="block text-xs text-outline mb-1 uppercase tracking-tighter">Option A</span>
+<span class="text-lg font-semibold text-on-surface-variant group-hover:text-primary transition-colors">Himalayan Monal</span>
+</div>
+</button>
+<!-- Option B -->
+<button class="group flex items-center gap-4 p-6 rounded-2xl bg-surface-container hover:bg-surface-bright transition-all duration-300 text-left border border-outline-variant/5 animate-fade-up" style="animation-delay: 0.3s">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+</div>
+<div>
+<span class="block text-xs text-outline mb-1 uppercase tracking-tighter">Option B</span>
+<span class="text-lg font-semibold text-on-surface-variant group-hover:text-primary transition-colors">Snow Leopard</span>
+</div>
+</button>
+<!-- Option C (Correct Simulation) -->
+<button class="group flex items-center gap-4 p-6 rounded-2xl bg-primary-container/20 border-2 border-primary relative overflow-hidden transition-all duration-500 text-left animate-fade-up animate-celebrate shadow-[0_0_25px_rgba(149,212,179,0.15)]" style="animation-delay: 0.4s">
+<div class="absolute top-2 right-4 flex items-center gap-1">
+<span class="text-[10px] font-bold text-primary uppercase">Correct Answer</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span>
+</div>
+<div class="absolute inset-0 pointer-events-none opacity-20 bg-gradient-to-tr from-primary/30 to-transparent"></div>
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-primary shadow-[0_0_20px_rgba(149,212,179,0.5)] transition-all duration-500">
+<span class="material-symbols-outlined" data-icon="nature">nature</span>
+</div>
+<div>
+<span class="block text-xs text-primary/70 mb-1 uppercase tracking-tighter">Option C</span>
+<span class="text-lg font-semibold text-primary">Western Tragopan</span>
+</div>
+</button>
+<!-- Option D -->
+<button class="group flex items-center gap-4 p-6 rounded-2xl bg-surface-container hover:bg-surface-bright transition-all duration-300 text-left border border-outline-variant/5 animate-fade-up" style="animation-delay: 0.5s">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="water_drop">water_drop</span>
+</div>
+<div>
+<span class="block text-xs text-outline mb-1 uppercase tracking-tighter">Option D</span>
+<span class="text-lg font-semibold text-on-surface-variant group-hover:text-primary transition-colors">Golden Mahseer</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Lifeline & AI Guide Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-up" style="animation-delay: 0.6s">
+<!-- AI Guide Button -->
+<button class="md:col-span-2 group relative overflow-hidden flex items-center gap-6 p-8 rounded-3xl bg-surface-container-low hover:bg-surface-container transition-all duration-500 border border-outline-variant/10">
+<div class="w-16 h-16 rounded-full bg-tertiary-container flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-3xl" data-icon="psychology">psychology</span>
+</div>
+<div class="text-left">
+<h3 class="font-headline font-bold text-xl text-on-surface">Consult Yukti AI</h3>
+<p class="text-on-surface-variant text-sm mt-1">Unlock a contextual hint from the forest spirits.</p>
+</div>
+<div class="ml-auto bg-surface-container-highest p-2 rounded-full text-tertiary group-hover:translate-x-1 transition-transform">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</button>
+<!-- Lifeline Status -->
+<div class="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10 flex flex-col justify-center items-center gap-4 text-center transition-transform hover:scale-[1.02] duration-300">
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-error" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-error" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-outline-variant" data-icon="favorite">favorite</span>
+</div>
+<span class="label-md font-bold text-on-surface-variant">2 Lifelines Left</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-zinc-950 border-t border-emerald-900/20 py-12 px-8 font-['Inter'] text-sm leading-6 z-20 relative">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
+<div class="flex flex-col gap-4">
+<div class="font-['Manrope'] font-bold text-emerald-400 text-xl tracking-tighter">YUKTI</div>
+<p class="text-zinc-500 max-w-xs">© 2024 Yukti Uttarakhand. For the Peaks and Pines.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+<div class="flex flex-col gap-3">
+<span class="font-bold text-emerald-500 mb-2">Platform</span>
+<a class="text-zinc-500 hover:text-emerald-300 hover:translate-y-[-2px] transition-transform duration-300" href="#">Conservation Efforts</a>
+<a class="text-zinc-500 hover:text-emerald-300 hover:translate-y-[-2px] transition-transform duration-300" href="#">Educational Resources</a>
+<a class="text-zinc-500 hover:text-emerald-300 hover:translate-y-[-2px] transition-transform duration-300" href="#">Credits</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-bold text-emerald-500 mb-2">Legal</span>
+<a class="text-zinc-500 hover:text-emerald-300 hover:translate-y-[-2px] transition-transform duration-300" href="#">Privacy Policy</a>
+<a class="text-zinc-500 hover:text-emerald-300 hover:translate-y-[-2px] transition-transform duration-300" href="#">Terms of Use</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

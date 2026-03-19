@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>YUKTI | Mini Games Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#690005",
+              "surface-container-high": "#282a2a",
+              "surface-bright": "#383939",
+              "primary-fixed-dim": "#95d4b3",
+              "secondary-container": "#29513f",
+              "surface-variant": "#333535",
+              "surface-container": "#1e2020",
+              "on-secondary": "#0e3727",
+              "tertiary": "#58d6f1",
+              "surface-container-highest": "#333535",
+              "surface-dim": "#121414",
+              "on-primary-fixed": "#002114",
+              "outline-variant": "#404944",
+              "outline": "#8a938d",
+              "on-tertiary": "#00363f",
+              "on-primary-fixed-variant": "#0e5138",
+              "tertiary-fixed-dim": "#58d6f1",
+              "surface-container-lowest": "#0d0f0f",
+              "on-primary-container": "#7fbd9d",
+              "primary-fixed": "#b1f0ce",
+              "on-tertiary-fixed": "#001f25",
+              "error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#004e5b",
+              "primary-container": "#074d34",
+              "surface-tint": "#95d4b3",
+              "inverse-surface": "#e2e2e2",
+              "surface-container-low": "#1a1c1c",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#a7edff",
+              "tertiary-container": "#004a56",
+              "on-background": "#e2e2e2",
+              "surface": "#121414",
+              "inverse-on-surface": "#2f3131",
+              "on-tertiary-container": "#38bfd9",
+              "on-secondary-fixed": "#002114",
+              "on-error-container": "#ffdad6",
+              "on-primary": "#003824",
+              "background": "#121414",
+              "secondary-fixed-dim": "#a5d0b9",
+              "primary": "#95d4b3",
+              "inverse-primary": "#2c694e",
+              "on-surface": "#e2e2e2",
+              "secondary": "#a5d0b9",
+              "on-secondary-container": "#97c2ab",
+              "on-surface-variant": "#bfc9c3",
+              "secondary-fixed": "#c1ecd4",
+              "on-secondary-fixed-variant": "#274e3d"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            },
+            animation: {
+              float: 'float 3s ease-in-out infinite',
+              fadeInUp: 'fadeInUp 0.6s ease-out forwards',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(30, 32, 32, 0.6);
+        backdrop-filter: blur(20px);
+      }
+      .glow-tertiary:hover {
+        box-shadow: 0 0 20px rgba(88, 214, 241, 0.4);
+      }
+      .glow-primary:hover {
+        box-shadow: 0 0 25px rgba(149, 212, 179, 0.4);
+      }
+      .btn-animate {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-animate:active {
+        transform: scale(0.95);
+      }
+      .btn-animate:hover {
+        transform: translateY(-2px);
+      }
+      .stagger-1 { animation-delay: 0.1s; }
+      .stagger-2 { animation-delay: 0.2s; }
+      .stagger-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary min-h-screen">
+<!-- TopNavBar (Glassmorphic) -->
+<header class="fixed top-0 w-full px-6 py-4 flex justify-between items-center bg-emerald-950/40 backdrop-blur-xl z-50 shadow-[0_0_40px_rgba(226,226,226,0.06)]">
+<div class="text-2xl font-black text-emerald-400 tracking-tighter font-headline">YUKTI</div>
+<nav class="hidden md:flex items-center gap-8 font-headline tracking-tight">
+<a class="text-emerald-100/70 hover:text-emerald-100 transition-all duration-300" href="#">Quests</a>
+<a class="text-emerald-100/70 hover:text-emerald-100 transition-all duration-300" href="#">Map</a>
+<a class="text-emerald-300 font-bold border-b-2 border-emerald-400 pb-1" href="#">Games</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-emerald-800/30 transition-all duration-300 scale-95 active:scale-90">
+<span class="material-symbols-outlined text-emerald-400" data-icon="eco">eco</span>
+</button>
+<div class="w-10 h-10 rounded-full border border-outline-variant/30 overflow-hidden cursor-pointer hover:ring-2 ring-primary transition-all">
+<img alt="Student Profile Avatar" class="w-full h-full object-cover" data-alt="Student Profile Avatar Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdMydUc6zUJAkBxLSGUHwAxlmGlIj4rRrZM1IyNO08Lj3miNMd6YU6HMZmOJ4g8YB92yLnysUdVjIXAsaT92D_XjGJzhWAJEyaQTW8nY4rS0gpRO3yBE6fWx2igE86xJs0JcmdxPKS-0j1ZEDag8B89YStZcq7NpAzcYxO9dLJjz6XcEGugBRDJqR9-NGMcDYfqJnbQ8wB4RhHofC2pD3R43sjTKwVoiqHr01thXzd8aOUujc6WiuTS5E03iAfsowVLqumU_riuA"/>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-20 px-6 max-w-7xl mx-auto flex gap-8">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-[calc(100vh-160px)] w-64 sticky top-32 py-8 px-4 bg-zinc-950/60 backdrop-blur-2xl rounded-3xl animate-fadeInUp">
+<div class="mb-10 text-center">
+<div class="text-xl font-bold text-emerald-500 font-headline mb-1">Garhwal Explorer</div>
+<div class="text-xs text-zinc-400 font-label tracking-widest uppercase">Level 12 Forest Guard</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 rounded-xl transition-all duration-200 ease-out group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="font-medium">Quests</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 rounded-xl transition-all duration-200 ease-out group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="explore">explore</span>
+<span class="font-medium">Map</span>
+</a>
+<a class="flex items-center gap-3 bg-emerald-500/20 text-emerald-300 rounded-lg px-4 py-3 border-l-4 border-emerald-400 transition-all duration-200 ease-out group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="videogame_asset">videogame_asset</span>
+<span class="font-medium">Games</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 rounded-xl transition-all duration-200 ease-out group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="query_stats">query_stats</span>
+<span class="font-medium">Progress</span>
+</a>
+</nav>
+<button class="mt-auto bg-primary-container text-on-primary-container py-3 rounded-xl font-bold hover:brightness-110 btn-animate text-sm hover:shadow-[0_4px_15px_rgba(7,77,52,0.4)]">
+                View Leaderboard
+            </button>
+</aside>
+<!-- Main Content Canvas -->
+<div class="flex-1 space-y-20">
+<!-- Featured Game Section -->
+<section class="relative group opacity-0 animate-fadeInUp stagger-1">
+<div class="grid grid-cols-12 gap-0 items-center">
+<!-- Game Trailer Card -->
+<div class="col-span-12 lg:col-span-8 relative z-10 overflow-hidden rounded-3xl">
+<div class="aspect-video bg-surface-container-low border border-outline-variant/10 shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
+<img alt="River Cleaning Hero Trailer" class="w-full h-full object-cover opacity-60 transition-transform duration-1000 group-hover:scale-110" data-alt="River cleaning game visual background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkluYTvZAX5KIgsNXYia8S7f2Mu95om8r1fMVnFTVjB4zIC77uqYxMFD-72GgEtC9_ThW63TTbxP4xPOgiLfK4-oRjQ1D-nk-n3jGCZJ8KfcTA_b-8eRYxikge6M-UD_C4UTxjAyie6ecdyOalo_TCEapCgru8GOt1MZrw5WfRIbEw9HJLbsmXNPQkEDWCun5C4tuATiQehb22rZWQiArjM87zgVvLtW4bf2tKLP2PggKtR4AI2-JrwIrFMwRgRved2uAEiuB37w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<!-- Play Pulse Overlay -->
+<div class="absolute inset-0 flex items-center justify-center cursor-pointer">
+<div class="w-20 h-20 bg-primary/20 backdrop-blur-md rounded-full flex items-center justify-center border border-primary/30 group-hover:scale-125 transition-all duration-500 hover:bg-primary/40">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Info Card -->
+<div class="col-span-12 lg:col-span-5 lg:-ml-24 relative z-20 mt-6 lg:mt-0 opacity-0 animate-fadeInUp stagger-2">
+<div class="glass-card p-10 rounded-3xl border border-outline-variant/20 shadow-2xl space-y-6 hover:translate-y-[-4px] transition-transform duration-500">
+<div class="flex items-center gap-3">
+<span class="bg-tertiary/10 text-tertiary px-3 py-1 rounded-full text-xs font-label tracking-widest font-bold border border-tertiary/20">DAILY CHALLENGE</span>
+<span class="text-zinc-500 text-sm font-label">Action / Simulation</span>
+</div>
+<h2 class="text-4xl font-headline font-extrabold tracking-tight text-on-background">River Cleaning Hero</h2>
+<p class="text-zinc-400 leading-relaxed body-lg">Navigate the Alaknanda currents and retrieve pollutants before they reach the sacred confluences. Save the ecosystem, one piece of plastic at a time.</p>
+<div class="flex gap-8 py-2">
+<div>
+<div class="text-[10px] text-zinc-500 font-label tracking-widest uppercase mb-1">Difficulty</div>
+<div class="flex gap-1">
+<span class="w-4 h-1 bg-tertiary rounded-full"></span>
+<span class="w-4 h-1 bg-tertiary rounded-full"></span>
+<span class="w-4 h-1 bg-zinc-700 rounded-full"></span>
+</div>
+</div>
+<div>
+<div class="text-[10px] text-zinc-500 font-label tracking-widest uppercase mb-1">Potential XP</div>
+<div class="text-tertiary font-bold">+450 XP</div>
+</div>
+<div>
+<div class="text-[10px] text-zinc-500 font-label tracking-widest uppercase mb-1">High Score</div>
+<div class="text-on-surface font-bold">12,402</div>
+</div>
+</div>
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-full shadow-lg glow-primary btn-animate flex items-center justify-center gap-2 group/btn">
+<span>Play Now</span>
+<span class="material-symbols-outlined text-xl group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-300" data-icon="rocket_launch">rocket_launch</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Games Bento Grid -->
+<section class="space-y-10">
+<div class="flex justify-between items-end opacity-0 animate-fadeInUp stagger-2">
+<div>
+<h3 class="text-3xl font-headline font-bold text-on-background">Environmental Gallery</h3>
+<p class="text-zinc-500 mt-2">Level up your conservation skills through play.</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-full border border-outline-variant/20 hover:bg-surface-container-high transition-all hover:scale-110 active:scale-90">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-2 rounded-full border border-outline-variant/20 hover:bg-surface-container-high transition-all hover:scale-110 active:scale-90">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Game Card: Waste Sorting Challenge -->
+<div class="bg-surface-container rounded-3xl p-6 border border-outline-variant/5 hover:bg-surface-bright transition-all duration-500 group opacity-0 animate-fadeInUp stagger-1">
+<div class="relative h-48 mb-6 rounded-2xl overflow-hidden">
+<img alt="Waste Sorting Challenge" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Abstract colorful recycled waste items pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQSAWnomsKbkiMtieWRMoCSlbzWsDvcexJfQJ2eBDyqeiBCLaO7Svof7ksnPWwFH1yzAJ7Lb_xkL0kxE9gFYluzLUgjhwvQF9ukZyKmX-HgHRd3UvWFYvWG0WGaagk-YxUs7bxcNlIGj_EU_vSGqg7baCd0oSAjLUAgcs0xnbip3COpEKPIb1UEKFn7ddX9_UdpGCOZvoDvAX4GcEPJSUuEwybhzLrKmZkOjOIRWjEef39lwENScDXNsg9yLTmg3VTQZ_uf6P_NQ"/>
+<span class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 rounded-full text-[10px] font-bold font-label uppercase shadow-lg">New</span>
+</div>
+<h4 class="text-xl font-headline font-bold mb-2 group-hover:text-primary transition-colors">Waste Sorting Challenge</h4>
+<p class="text-zinc-500 text-sm mb-6 line-clamp-2">Master the art of Himalayan waste management. Sort recyclables at lightning speed.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-2 text-tertiary-fixed">
+<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
+<span class="text-xs font-bold font-label">300 XP</span>
+</div>
+<button class="flex items-center gap-1 text-primary text-sm font-bold group-hover:translate-x-1 transition-transform">
+                                Play
+                                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Game Card: Tree Planting Sim -->
+<div class="bg-surface-container rounded-3xl p-6 border border-outline-variant/5 hover:bg-surface-bright transition-all duration-500 group opacity-0 animate-fadeInUp stagger-2">
+<div class="relative h-48 mb-6 rounded-2xl overflow-hidden">
+<img alt="Tree Planting Sim" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Vibrant green forest sapling macro shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT4JIUgbzao0T3yAZ8h9kcAUxPj3RhhObWvnH23C2F3kUkVbQoudnNYP1BSyVbEhuE5dZ8F57t2z_fuAMe6ClgFE5YzRNYEXi5lbD-GDsByv_f02Fvx4497xXjpCpCSjRwKkCAhe6emxHVsHeCiGeBi3j2ArZgsokA86xzokCqTcLMmqwC7pawBzT-MZTuX01k8lOrMtlcF9-cACimsX-wyq-qxB8UMqP_BNuLdZqfDijh9YjiT8tv3R1AlsQwNxxcon6UEw2hNw"/>
+<span class="absolute top-4 left-4 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold font-label uppercase shadow-lg">Daily Challenge</span>
+</div>
+<h4 class="text-xl font-headline font-bold mb-2 group-hover:text-tertiary transition-colors">Tree Planting Sim</h4>
+<p class="text-zinc-500 text-sm mb-6 line-clamp-2">Reforest the barren slopes of Tehri. Manage soil health and water resources to grow a legacy.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-2 text-tertiary-fixed">
+<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
+<span class="text-xs font-bold font-label">500 XP</span>
+</div>
+<button class="flex items-center gap-1 text-primary text-sm font-bold group-hover:translate-x-1 transition-transform">
+                                Play
+                                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Game Card: Eco-Quiz Blitz -->
+<div class="bg-surface-container rounded-3xl p-6 border border-outline-variant/5 hover:bg-surface-bright transition-all duration-500 group opacity-0 animate-fadeInUp stagger-3">
+<div class="relative h-48 mb-6 rounded-2xl overflow-hidden">
+<img alt="Eco-Quiz Blitz" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Stylized glowing geometric data visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7GfaqN9fh60hYPr4hdxwnRUI0qGTlFz2_W4MjEf6hklXd57wpn-8-bv_BCT7p7LSkN9_Xww7jawjIR5jioj6ZESsX2rpMrWSxt92-MTu852bAcqdibqfSUeRP0yLiKZUx1eb18QodFRMunAIZ1i-R-H-aT3rU0VKbHD2rg46nMo_r_QdWpEzhItEmc6XK-_-zuw2rqxvJ8EQTDbk7RWzUFH047S9gZyTMBIXXgWuIclmOjN1TzyDu71i3OXbbg8CsK7oGR5aImQ"/>
+<span class="absolute top-4 left-4 bg-surface-container-highest text-on-surface px-3 py-1 rounded-full text-[10px] font-bold font-label uppercase shadow-lg">Unlockable</span>
+</div>
+<h4 class="text-xl font-headline font-bold mb-2 group-hover:text-on-surface-variant transition-colors">Eco-Quiz Blitz</h4>
+<p class="text-zinc-500 text-sm mb-6 line-clamp-2">Test your knowledge of Uttarakhand's flora and fauna in this high-speed trivia battle.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-2 text-tertiary-fixed">
+<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
+<span class="text-xs font-bold font-label">250 XP</span>
+</div>
+<button class="flex items-center gap-1 text-primary text-sm font-bold group-hover:translate-x-1 transition-transform">
+                                Play
+                                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Achievement Section -->
+<section class="glass-card p-12 rounded-[3rem] border border-outline-variant/10 relative overflow-hidden opacity-0 animate-fadeInUp stagger-3">
+<div class="relative z-10 flex flex-col md:flex-row items-center gap-10">
+<div class="w-32 h-32 bg-gradient-to-tr from-tertiary to-tertiary-container rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(88,214,241,0.2)] shrink-0 animate-float">
+<span class="material-symbols-outlined text-on-tertiary text-6xl" data-icon="trophy" style="font-variation-settings: 'FILL' 1;">trophy</span>
+</div>
+<div class="text-center md:text-left">
+<h3 class="text-3xl font-headline font-extrabold text-on-background mb-2">Weekly Champion Hunt</h3>
+<p class="text-zinc-400 max-w-lg">Rank in the top 5 of any game this week to unlock the "Mountain Guardian" badge and a bonus 1,000 XP booster for your next quest.</p>
+</div>
+<div class="ml-auto">
+<div class="bg-surface-container-lowest px-6 py-4 rounded-2xl border border-outline-variant/20 hover:scale-105 transition-transform duration-300">
+<div class="text-xs text-zinc-500 font-label uppercase tracking-widest mb-1 text-center">Ends In</div>
+<div class="text-2xl font-mono font-bold text-tertiary">14h : 22m : 09s</div>
+</div>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute -left-20 -bottom-20 w-64 h-64 bg-tertiary/5 rounded-full blur-3xl"></div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-zinc-950 border-t border-emerald-900/20 py-12 px-8 mt-20">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8 items-start">
+<div class="space-y-4">
+<div class="font-['Manrope'] font-bold text-emerald-400 text-xl tracking-tighter">YUKTI</div>
+<p class="text-zinc-500 font-['Inter'] text-sm leading-6 max-w-xs">© 2024 Yukti Uttarakhand. For the Peaks and Pines. Built to preserve the majesty of the Himalayas.</p>
+</div>
+<div class="flex gap-12">
+<div class="space-y-4">
+<h4 class="text-emerald-500 font-bold text-sm uppercase tracking-widest font-label">Links</h4>
+<ul class="space-y-2">
+<li><a class="text-zinc-500 hover:text-emerald-300 transition-all hover:translate-x-1 inline-block" href="#">Conservation Efforts</a></li>
+<li><a class="text-zinc-500 hover:text-emerald-300 transition-all hover:translate-x-1 inline-block" href="#">Educational Resources</a></li>
+<li><a class="text-zinc-500 hover:text-emerald-300 transition-all hover:translate-x-1 inline-block" href="#">Credits</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="text-emerald-500 font-bold text-sm uppercase tracking-widest font-label">Connect</h4>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-zinc-500 hover:text-emerald-300 cursor-pointer transition-all hover:scale-125" data-icon="public">public</span>
+<span class="material-symbols-outlined text-zinc-500 hover:text-emerald-300 cursor-pointer transition-all hover:scale-125" data-icon="mail">mail</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

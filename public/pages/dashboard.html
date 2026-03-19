@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&amp;family=Inter:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#690005",
+              "surface-container-high": "#282a2a",
+              "surface-bright": "#383939",
+              "primary-fixed-dim": "#95d4b3",
+              "secondary-container": "#29513f",
+              "surface-variant": "#333535",
+              "surface-container": "#1e2020",
+              "on-secondary": "#0e3727",
+              "tertiary": "#58d6f1",
+              "surface-container-highest": "#333535",
+              "surface-dim": "#121414",
+              "on-primary-fixed": "#002114",
+              "outline-variant": "#404944",
+              "outline": "#8a938d",
+              "on-tertiary": "#00363f",
+              "on-primary-fixed-variant": "#0e5138",
+              "tertiary-fixed-dim": "#58d6f1",
+              "surface-container-lowest": "#0d0f0f",
+              "on-primary-container": "#7fbd9d",
+              "primary-fixed": "#b1f0ce",
+              "on-tertiary-fixed": "#001f25",
+              "error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#004e5b",
+              "primary-container": "#074d34",
+              "surface-tint": "#95d4b3",
+              "inverse-surface": "#e2e2e2",
+              "surface-container-low": "#1a1c1c",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#a7edff",
+              "tertiary-container": "#004a56",
+              "on-background": "#e2e2e2",
+              "surface": "#121414",
+              "inverse-on-surface": "#2f3131",
+              "on-tertiary-container": "#38bfd9",
+              "on-secondary-fixed": "#002114",
+              "on-error-container": "#ffdad6",
+              "on-primary": "#003824",
+              "background": "#121414",
+              "secondary-fixed-dim": "#a5d0b9",
+              "primary": "#95d4b3",
+              "inverse-primary": "#2c694e",
+              "on-surface": "#e2e2e2",
+              "secondary": "#a5d0b9",
+              "on-secondary-container": "#97c2ab",
+              "on-surface-variant": "#bfc9c3",
+              "secondary-fixed": "#c1ecd4",
+              "on-secondary-fixed-variant": "#274e3d"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #121414; color: #e2e2e2; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { backdrop-filter: blur(20px); }
+        .mist-gradient { background: linear-gradient(135deg, rgba(149, 212, 179, 0.1) 0%, rgba(88, 214, 241, 0.05) 100%); }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-slide-up {
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: var(--final-width); }
+        }
+
+        .progress-bar-animate {
+            animation: expandWidth 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            animation-delay: 0.8s;
+        }
+
+        .button-glow:hover {
+            box-shadow: 0 0 20px rgba(149, 212, 179, 0.4);
+            transform: scale(1.05);
+        }
+
+        .button-glow-secondary:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .impact-score-animation {
+            display: inline-block;
+            animation: countUp 1s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-container selection:text-primary">
+<!-- Shell Layout: SideNavBar Anchor -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-zinc-950/60 backdrop-blur-2xl z-50 py-8 px-4 font-['Inter'] leading-relaxed bg-zinc-900/40">
+<div class="mb-10 px-4">
+<h1 class="text-xl font-bold text-emerald-500">YUKTI</h1>
+</div>
+<div class="flex items-center gap-3 px-4 mb-10 transition-all duration-300 hover:bg-white/5 rounded-xl py-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Student Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtLNEPn7zadJAnKU7wqP_gN7UhX7_KoI2d8oQjJm8oTMuqBK65QONYdwRD3EvXWsYMLeBBvexRz_UEgZAtiIQAnZaRdgr668zlJqyVjrFl5C9j7CMFA59QN2lr6stHqDLtaWdtWn7SEaffTnMc2ydIkLpWD5IyLb8-WtuDhp0zdr7CPW-DaZUpLZYQux3rDoEJS_Mqfmw3OrF9kqFXzf8q4ncRM9943HITVZ4mK3ERZU6me2xtvOENP9SqMktAMOBlHkVfkCXAVg"/>
+</div>
+<div>
+<p class="text-on-surface font-semibold text-sm">Garhwal Explorer</p>
+<p class="text-zinc-500 text-xs">Level 12 Forest Guard</p>
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<a class="flex items-center gap-3 bg-emerald-500/20 text-emerald-300 rounded-lg px-4 py-3 border-l-4 border-emerald-400 transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="font-medium">Quests</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 rounded-lg hover:bg-zinc-800/50 hover:text-emerald-200 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span>Map</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 rounded-lg hover:bg-zinc-800/50 hover:text-emerald-200 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span>Games</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 rounded-lg hover:bg-zinc-800/50 hover:text-emerald-200 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span>Progress</span>
+</a>
+</div>
+<button class="mt-auto mx-4 bg-primary-container text-primary py-3 rounded-xl font-bold text-sm transition-all duration-300 button-glow active:scale-95">
+            View Leaderboard
+        </button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen">
+<!-- Hero Section: The Ethereal Observatory -->
+<header class="relative overflow-hidden pt-12 pb-24 px-8 md:px-16 animate-slide-up">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none">
+<div class="w-full h-full bg-gradient-to-l from-primary/30 to-transparent blur-3xl"></div>
+</div>
+<div class="relative z-10 max-w-5xl">
+<span class="inline-block text-tertiary font-label text-xs tracking-widest mb-4 bg-tertiary-container/30 px-3 py-1 rounded-full uppercase">Expedition Status</span>
+<h2 class="font-headline text-5xl md:text-7xl font-extrabold text-on-surface tracking-tighter leading-none mb-6">
+                    Namaste, Explorer!
+                </h2>
+<p class="font-body text-xl md:text-2xl text-on-surface-variant max-w-2xl mb-8 leading-relaxed">
+                    Your environmental impact score is <span class="text-primary font-bold impact-score-animation">450</span>. The mist is clearing over the Nanda Devi peak.
+                </p>
+<div class="flex gap-4">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-bold shadow-lg shadow-primary/10 transition-all duration-300 button-glow">
+                        Continue Journey
+                    </button>
+<button class="glass-panel border border-outline-variant/15 text-on-surface px-8 py-4 rounded-full font-bold transition-all duration-300 hover:bg-surface-bright button-glow-secondary">
+                        Daily Log
+                    </button>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<section class="px-8 md:px-16 pb-20 -mt-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 max-w-7xl mx-auto">
+<!-- Current Quest: Featured Glass Card -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-surface-container-low p-1 animate-slide-up stagger-1">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="relative bg-surface-container rounded-[1.4rem] h-full p-8 md:p-10 flex flex-col justify-between overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 opacity-10 -mr-16 -mt-16 rotate-12 transition-transform duration-1000 group-hover:rotate-6 group-hover:scale-110">
+<span class="material-symbols-outlined text-[12rem]" data-icon="snowshoeing">snowshoeing</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-primary font-label text-xs tracking-widest uppercase">Active Expedition</span>
+</div>
+<h3 class="font-headline text-3xl font-bold text-on-surface mb-4">Save the Snow Leopards – Part 1</h3>
+<p class="text-on-surface-variant max-w-md mb-8">Identify motion-sensor triggers in the Hemis altitude maps to track migration patterns.</p>
+<div class="w-full bg-surface-container-highest rounded-full h-3 mb-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full shadow-[0_0_15px_rgba(149,212,179,0.3)] progress-bar-animate" style="--final-width: 65%;"></div>
+</div>
+<div class="flex justify-between text-xs text-zinc-500 font-medium">
+<span>65% Complete</span>
+<span>+250 XP</span>
+</div>
+</div>
+<div class="mt-12 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-zinc-800 transition-transform hover:z-10 hover:-translate-y-1"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-zinc-700 transition-transform hover:z-10 hover:-translate-y-1"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-zinc-600 flex items-center justify-center text-[10px] transition-transform hover:z-10 hover:-translate-y-1">+4</div>
+</div>
+<button class="text-primary flex items-center gap-2 font-bold text-sm group/btn transition-all hover:gap-3">
+                                Open Module
+                                <span class="material-symbols-outlined group-hover/btn:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Leaderboard Side Widget -->
+<div class="md:col-span-4 bg-surface-container rounded-3xl p-8 border border-outline-variant/10 animate-slide-up stagger-2">
+<div class="flex justify-between items-center mb-8">
+<h4 class="font-headline text-xl font-bold">Top Guardians</h4>
+<span class="material-symbols-outlined text-zinc-500 transition-transform group-hover:rotate-12" data-icon="leaderboard">leaderboard</span>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between group cursor-default transition-all duration-300 hover:translate-x-1">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden transition-transform group-hover:scale-110">
+<img alt="Friend 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC16cIURDXsRcYdpbfbbojCKeUa3oOBW8EOQCBzLoO11AXNWxCD43_7w37G2dKAyXX4d_ZYPTojb2fTvdGwGzImKhjbfFFHsw-w07215VEv3bE-fwX7QY6npaInNniPYSXWLnwpGhgCKbatXemGO41BYKHNMdkkG8eFGXy2ECZXvgFWBMtCVSD45LY02V3uThwRpE74Wy43aTm8l6MsCpJZH1MxbYDD9v12XMBHPxZcDJcFl-oFiyfYowNCsZdrUz470fx7umugHg"/>
+</div>
+<div>
+<p class="font-bold text-sm">Arjun V.</p>
+<p class="text-zinc-500 text-xs">Level 15</p>
+</div>
+</div>
+<span class="text-primary font-bold">512</span>
+</div>
+<div class="flex items-center justify-between group cursor-default transition-all duration-300 hover:translate-x-1 bg-primary/5 -mx-4 px-4 py-2 rounded-xl border border-primary/10">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden ring-2 ring-primary/40 p-0.5 transition-transform group-hover:scale-110">
+<img alt="Student Profile" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq96fvbO58eN0K9v1AsXY1vNPPhP_Sm55a9nG59ogGe3fjDEmJRrOWWpDx5Ap9krh_8kGrdtciKV3EBhExRMJrHpEfxeUzsTsD-49WElllfR3DOZBJ2BUFPWrW932IiGR9xSRf4m_uopeGGIisB1HsYoH_lPrLZNBH-YPDKaur_2J5SSYq73-syUV0eudNI_5eIOpBD_qIRZhn1DOd5rxQCnkkLmgO6dM9MHF9-luU_F0ooqQt3oMduadvvc-hNhVqQcutrrcDLw"/>
+</div>
+<div>
+<p class="font-bold text-sm text-primary">You</p>
+<p class="text-zinc-500 text-xs">Level 12</p>
+</div>
+</div>
+<span class="text-primary font-bold">450</span>
+</div>
+<div class="flex items-center justify-between group cursor-default transition-all duration-300 hover:translate-x-1">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden transition-transform group-hover:scale-110">
+<img alt="Friend 3" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJKOXkkFLjnZgJfCj68os08cNUirLVGfZQGr6CdEwKDVAoxPDMHVCY5w_bzZbdP7JTzuOYeoQNJhRIxrqGt6sfEZAZH6-F660kUVzDDk45_WJUrEMxPBrLAAPRHXpxqP-RpUlpttNNXDZ688DUfv_aSsi4XdB49NF7b1IbPfLwS60nNzN2paaMo485ztA0Ji-kEdSgTyZwYjjxu9JP34-zvAfW7V6whZQ74b7dvbJSg8Fs9_EfsVAPgut7we14BTfHwOOwX6h38w"/>
+</div>
+<div>
+<p class="font-bold text-sm">Priya S.</p>
+<p class="text-zinc-500 text-xs">Level 11</p>
+</div>
+</div>
+<span class="text-zinc-400 font-bold">428</span>
+</div>
+</div>
+<button class="w-full mt-8 py-3 text-sm text-zinc-500 hover:text-primary transition-all duration-300 border-t border-outline-variant/10 hover:tracking-wider">
+                        View Global Ranking
+                    </button>
+</div>
+<!-- Progress Grid: Badges -->
+<div class="md:col-span-12 mt-4 animate-slide-up stagger-3">
+<div class="flex items-center gap-4 mb-8">
+<h4 class="font-headline text-2xl font-bold">Honorary Seals</h4>
+<div class="h-px flex-1 bg-outline-variant/20"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+<div class="group bg-surface-container-low hover:bg-surface-container rounded-2xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="forest">forest</span>
+</div>
+<p class="font-bold text-sm mb-1">Forest Guard</p>
+<p class="text-[10px] text-zinc-500">Awarded Jan 24</p>
+</div>
+<div class="group bg-surface-container-low hover:bg-surface-container rounded-2xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-tertiary/5">
+<div class="w-16 h-16 rounded-full bg-tertiary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="water_drop">water_drop</span>
+</div>
+<p class="font-bold text-sm mb-1">River Protector</p>
+<p class="text-[10px] text-zinc-500">Awarded Feb 12</p>
+</div>
+<div class="group bg-surface-container-lowest/50 rounded-2xl p-6 flex flex-col items-center text-center opacity-40 hover:opacity-60 transition-opacity">
+<div class="w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-zinc-500 text-3xl" data-icon="lock">lock</span>
+</div>
+<p class="font-bold text-sm mb-1">Peak Scaler</p>
+<p class="text-[10px] text-zinc-600">Locked</p>
+</div>
+<div class="group bg-surface-container-lowest/50 rounded-2xl p-6 flex flex-col items-center text-center opacity-40 hover:opacity-60 transition-opacity">
+<div class="w-16 h-16 rounded-full bg-zinc-800 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-zinc-500 text-3xl" data-icon="landscape">landscape</span>
+</div>
+<p class="font-bold text-sm mb-1">Soil Warden</p>
+<p class="text-[10px] text-zinc-600">Locked</p>
+</div>
+</div>
+</div>
+<!-- Quick Access: Mini Games and Map -->
+<div class="md:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-8 mt-4 animate-slide-up stagger-4">
+<!-- Mini Games Access -->
+<div class="relative group h-48 rounded-3xl overflow-hidden cursor-pointer transition-transform duration-500 hover:-translate-y-2">
+<div class="absolute inset-0 bg-zinc-900">
+<img alt="Gaming Section" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr9rHDGE2rms3Yjaj6Z20xpm7IB-Yqgvn8fC1zaulrAOshRG2ued_rAzyCQfIzk9O86I4gaMqAejQ8WvTFqVnTvyFmNsxhV3R2T_xy2Ooo6mCtcFnEoq-TStuEcX6C4FOTpCHFV-oQwxJebapKYUp0LCa6lFWeKjLoDjflFchUaFuQ0ZKWuSdQ2LZOQ4iL-b3kVue5f9qXgaly06IMrN9MjBhqvYxuf3J3Ts850Xxie_CYudBPuH3csJHssK2sknXkREjrcm4RqQ"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent transition-opacity group-hover:opacity-80"></div>
+<div class="relative h-full p-8 flex flex-col justify-end">
+<div class="flex items-center gap-3 transform transition-transform group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-tertiary" data-icon="videogame_asset">videogame_asset</span>
+<h5 class="font-headline text-2xl font-bold">Eco Mini Games</h5>
+</div>
+<p class="text-zinc-400 text-sm mt-2 transition-all group-hover:text-white">Challenge your knowledge and win artifacts.</p>
+</div>
+</div>
+<!-- Interactive Map Access -->
+<div class="relative group h-48 rounded-3xl overflow-hidden cursor-pointer transition-transform duration-500 hover:-translate-y-2">
+<div class="absolute inset-0 bg-zinc-900">
+<img alt="Map Section" class="w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszgwURcP0X4fHF0x2dTT6qmvAsFFdOOAfglybINMKVsVL6EzPvEpNPviZm1lGO-8XSBNwp4ycwZChD1St-JoLCQpyt2845Iqn9YgSLEsTlYdU6W9DKGrOER6voTXmzVMiE6V1jiun0cIavngW_8XHEimNVA2zrfisMsiQek-9hHK_4Wrhy1K19--VHH8SkyyuRIXsAJgqEep78One9pLyjxz2qfa0Sur3Z9fwnHuIC8YHZ2TrrIYmbQDOtu5N4FMqUXZ-hWmbFQ"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent transition-opacity group-hover:opacity-80"></div>
+<div class="relative h-full p-8 flex flex-col justify-end">
+<div class="flex items-center gap-3 transform transition-transform group-hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary" data-icon="map">map</span>
+<h5 class="font-headline text-2xl font-bold">Interactive Map</h5>
+</div>
+<p class="text-zinc-400 text-sm mt-2 transition-all group-hover:text-white">Explore the digital twin of the Uttarakhand biome.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-zinc-950 full-width py-12 px-8 mt-20 border-t border-emerald-900/20 animate-slide-up stagger-5">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8 font-['Inter'] text-sm leading-6">
+<div>
+<h6 class="font-['Manrope'] font-bold text-emerald-400 mb-4">YUKTI</h6>
+<p class="text-zinc-500 max-w-xs">© 2024 Yukti Uttarakhand. For the Peaks and Pines.</p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-4">
+<div class="flex flex-col gap-2">
+<span class="text-on-surface font-semibold mb-2">Explore</span>
+<a class="text-zinc-500 hover:text-emerald-300 transition-all hover:translate-x-1" href="#">Conservation Efforts</a>
+<a class="text-zinc-500 hover:text-emerald-300 transition-all hover:translate-x-1" href="#">Educational Resources</a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-on-surface font-semibold mb-2">Platform</span>
+<a class="text-zinc-500 hover:text-emerald-300 transition-all hover:translate-x-1" href="#">Credits</a>
+<a class="text-zinc-500 hover:text-emerald-300 transition-all hover:translate-x-1" href="#">Support</a>
+</div>
+</div>
+</div>
+</footer>
+</main>
+<!-- Bottom Navigation for Mobile -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 glass-panel bg-surface/80 border-t border-outline-variant/10 py-3 px-6 z-50 flex justify-around">
+<a class="flex flex-col items-center text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="text-[10px] mt-1">Quests</span>
+</a>
+<a class="flex flex-col items-center text-zinc-500 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-[10px] mt-1">Map</span>
+</a>
+<a class="flex flex-col items-center text-zinc-500 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="text-[10px] mt-1">Games</span>
+</a>
+<a class="flex flex-col items-center text-zinc-500 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="text-[10px] mt-1">Stats</span>
+</a>
+</div>
+</body></html>

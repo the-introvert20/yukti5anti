@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>YUKTI | Interactive Map of Uttarakhand</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#690005",
+              "surface-container-high": "#282a2a",
+              "surface-bright": "#383939",
+              "primary-fixed-dim": "#95d4b3",
+              "secondary-container": "#29513f",
+              "surface-variant": "#333535",
+              "surface-container": "#1e2020",
+              "on-secondary": "#0e3727",
+              "tertiary": "#58d6f1",
+              "surface-container-highest": "#333535",
+              "surface-dim": "#121414",
+              "on-primary-fixed": "#002114",
+              "outline-variant": "#404944",
+              "outline": "#8a938d",
+              "on-tertiary": "#00363f",
+              "on-primary-fixed-variant": "#0e5138",
+              "tertiary-fixed-dim": "#58d6f1",
+              "surface-container-lowest": "#0d0f0f",
+              "on-primary-container": "#7fbd9d",
+              "primary-fixed": "#b1f0ce",
+              "on-tertiary-fixed": "#001f25",
+              "error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#004e5b",
+              "primary-container": "#074d34",
+              "surface-tint": "#95d4b3",
+              "inverse-surface": "#e2e2e2",
+              "surface-container-low": "#1a1c1c",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#a7edff",
+              "tertiary-container": "#004a56",
+              "on-background": "#e2e2e2",
+              "surface": "#121414",
+              "inverse-on-surface": "#2f3131",
+              "on-tertiary-container": "#38bfd9",
+              "on-secondary-fixed": "#002114",
+              "on-error-container": "#ffdad6",
+              "on-primary": "#003824",
+              "background": "#121414",
+              "secondary-fixed-dim": "#a5d0b9",
+              "primary": "#95d4b3",
+              "inverse-primary": "#2c694e",
+              "on-surface": "#e2e2e2",
+              "secondary": "#a5d0b9",
+              "on-secondary-container": "#97c2ab",
+              "on-surface-variant": "#bfc9c3",
+              "secondary-fixed": "#c1ecd4",
+              "on-secondary-fixed-variant": "#274e3d"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            animation: {
+              'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+              'slide-left': 'slideLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+              'pulse-glow-primary': 'pulseGlowPrimary 3s ease-in-out infinite',
+              'pulse-glow-tertiary': 'pulseGlowTertiary 3s ease-in-out infinite',
+            },
+            keyframes: {
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              slideLeft: {
+                '0%': { transform: 'translateX(20px)', opacity: '0' },
+                '100%': { transform: 'translateX(0)', opacity: '1' },
+              },
+              pulseGlowPrimary: {
+                '0%, 100%': { boxShadow: '0 0 0 0 rgba(149, 212, 179, 0.4)' },
+                '50%': { boxShadow: '0 0 20px 10px rgba(149, 212, 179, 0.2)' },
+              },
+              pulseGlowTertiary: {
+                '0%, 100%': { boxShadow: '0 0 0 0 rgba(88, 214, 241, 0.4)' },
+                '50%': { boxShadow: '0 0 20px 10px rgba(88, 214, 241, 0.2)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        backdrop-filter: blur(20px);
+        background: rgba(30, 32, 32, 0.6);
+      }
+      .map-container {
+        background-image: radial-gradient(circle at center, #1a1c1c 0%, #121414 100%);
+      }
+      .cloud-layer {
+        mask-image: radial-gradient(ellipse at center, black, transparent 70%);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-hidden h-screen flex">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col h-full py-8 px-4 bg-zinc-950/60 backdrop-blur-2xl font-['Inter'] leading-relaxed h-screen w-64 fixed left-0 top-0 z-50 tonal-layering bg-zinc-900/40 flat border-r border-outline-variant/10">
+<div class="mb-10 px-4">
+<h1 class="text-xl font-bold text-emerald-500 font-headline tracking-tighter">YUKTI</h1>
+<p class="text-[10px] text-zinc-500 font-label tracking-widest uppercase mt-1">Garhwal Explorer</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 transition-all duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="text-sm font-medium">Quests</span>
+</a>
+<a class="flex items-center gap-3 bg-emerald-500/20 text-emerald-300 rounded-lg px-4 py-3 border-l-4 border-emerald-400 transition-all duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-sm font-medium font-bold">Map</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 transition-all duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="text-sm font-medium">Games</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 transition-all duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="text-sm font-medium">Progress</span>
+</a>
+</nav>
+<div class="mt-auto px-4 py-6 bg-emerald-950/20 rounded-xl border border-emerald-900/30">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-emerald-800 flex items-center justify-center border border-emerald-400/30 overflow-hidden">
+<img alt="Student Profile Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a young person smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMWw7ISA0Bx6Haey76xb2ptbrJdByFThl_CDhQu3eabWGz8z8EpCUzeDsHLGghv10S6wqUcmP_pdsPVcuIdeWPNIhhMmI6dOY5dNNKXRXygHf6xHsF3abQidJyDhx9ZYjAS4CrIVCEUDmcOUksmMA7hRfCRkSujgh6kDDoJXSWK7RiibbNVBoVHd9xMMqrv7bR_oyNW_KENUhy59eiL-yP1mXIRO-8Sv6QV-O9RaGsueYHvlTDNXr09fMaheDID_s3dh8kk2niXw"/>
+</div>
+<div>
+<p class="text-xs font-bold text-emerald-300">Level 12</p>
+<p class="text-[10px] text-zinc-400">Forest Guard</p>
+</div>
+</div>
+<button class="w-full py-2 bg-emerald-500 text-on-primary rounded-lg text-xs font-bold hover:bg-emerald-400 active:scale-95 transition-all">
+                View Leaderboard
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 relative ml-0 md:ml-64 h-full map-container overflow-hidden">
+<!-- Top Nav -->
+<header class="fixed top-0 left-0 md:left-64 right-0 z-40 bg-emerald-950/40 backdrop-blur-xl px-6 py-4 flex justify-between items-center no-border tonal-shift shadow-[0_0_40px_rgba(226,226,226,0.06)]">
+<div class="flex items-center gap-4">
+<h2 class="text-2xl font-black text-emerald-400 tracking-tighter font-headline">YUKTI</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex gap-8">
+<a class="text-emerald-100/70 hover:text-emerald-100 text-sm font-medium transition-all duration-300" href="#">Quests</a>
+<a class="text-emerald-300 font-bold border-b-2 border-emerald-400 pb-1 text-sm transition-all duration-300" href="#">Map</a>
+<a class="text-emerald-100/70 hover:text-emerald-100 text-sm font-medium transition-all duration-300" href="#">Games</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-emerald-800/30 transition-all text-emerald-400">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Interactive Map Canvas -->
+<section class="w-full h-full relative pt-20">
+<!-- Stylized Topographic Elements -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<svg class="w-full h-full" viewbox="0 0 1000 800">
+<path d="M100,200 Q300,300 500,600 T900,750" fill="none" opacity="0.6" stroke="#58d6f1" stroke-dasharray="8 4" stroke-width="4"></path>
+<path d="M50,100 Q200,250 400,500 T700,800" fill="none" opacity="0.4" stroke="#58d6f1" stroke-dasharray="4 4" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Clouds -->
+<div class="absolute top-20 right-40 w-96 h-40 bg-white/5 blur-[80px] rounded-full cloud-layer"></div>
+<div class="absolute top-60 left-10 w-64 h-32 bg-white/5 blur-[60px] rounded-full cloud-layer"></div>
+<!-- Interactive Pins -->
+<div class="absolute inset-0 p-12">
+<!-- Pin: Jim Corbett -->
+<div class="absolute top-[65%] left-[25%] group">
+<button class="relative flex items-center justify-center animate-pulse-glow-primary rounded-full">
+<span class="absolute w-12 h-12 bg-primary/20 rounded-full animate-ping"></span>
+<div class="w-6 h-6 bg-primary rounded-full border-2 border-white/20 flex items-center justify-center shadow-lg shadow-primary/40 group-hover:scale-125 transition-transform duration-300">
+<span class="material-symbols-outlined text-[14px] text-on-primary" data-icon="nature_people" style="font-variation-settings: 'FILL' 1;">nature_people</span>
+</div>
+</button>
+<div class="absolute top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 bg-surface-container-highest px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-emerald-300 border border-outline-variant/30 whitespace-nowrap shadow-xl">
+                        JIM CORBETT NP
+                    </div>
+</div>
+<!-- Pin: Valley of Flowers -->
+<div class="absolute top-[35%] left-[60%] group">
+<button class="relative flex items-center justify-center animate-pulse-glow-tertiary rounded-full">
+<span class="absolute w-10 h-10 bg-tertiary/20 rounded-full animate-pulse"></span>
+<div class="w-6 h-6 bg-tertiary rounded-full border-2 border-white/20 flex items-center justify-center shadow-lg shadow-tertiary/40 group-hover:scale-125 transition-transform duration-300">
+<span class="material-symbols-outlined text-[14px] text-on-tertiary" data-icon="local_florist" style="font-variation-settings: 'FILL' 1;">local_florist</span>
+</div>
+</button>
+<div class="absolute top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 bg-surface-container-highest px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-tertiary-fixed-dim border border-outline-variant/30 whitespace-nowrap shadow-xl">
+                        VALLEY OF FLOWERS
+                    </div>
+</div>
+<!-- Pin: Nanda Devi Peak -->
+<div class="absolute top-[30%] left-[75%] group">
+<button class="relative flex items-center justify-center rounded-full transition-all duration-500 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+<div class="w-8 h-8 bg-zinc-100 rounded-full border-2 border-white/20 flex items-center justify-center shadow-lg shadow-white/20 group-hover:scale-125 transition-transform duration-300">
+<span class="material-symbols-outlined text-[18px] text-zinc-900" data-icon="filter_hdr" style="font-variation-settings: 'FILL' 1;">filter_hdr</span>
+</div>
+</button>
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-surface-container-high/80 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 opacity-0 group-hover:opacity-100 group-hover:-top-14 transition-all duration-300 pointer-events-none">
+<p class="text-[10px] font-black text-white whitespace-nowrap">NANDA DEVI PEAK</p>
+<p class="text-[9px] text-zinc-400 text-center">7,816m</p>
+</div>
+</div>
+<!-- Locked Region: Kumaon Heights -->
+<div class="absolute bottom-[20%] right-[15%] flex flex-col items-center">
+<div class="w-32 h-32 border-2 border-dashed border-outline-variant/40 rounded-full flex items-center justify-center bg-surface-container-low/20 backdrop-blur-sm group cursor-not-allowed hover:bg-surface-container-low/30 transition-colors duration-500">
+<div class="text-center group-hover:scale-90 transition-transform duration-500">
+<span class="material-symbols-outlined text-zinc-600 block mb-1" data-icon="lock">lock</span>
+<span class="text-[9px] font-bold text-zinc-500 uppercase tracking-tighter">Locked</span>
+</div>
+</div>
+<p class="mt-4 text-[11px] font-label text-zinc-500 bg-zinc-900/40 px-3 py-1 rounded-full opacity-60">Complete "Tehri Quest" to unlock</p>
+</div>
+</div>
+<!-- Legend Overlay -->
+<div class="absolute bottom-8 left-8 space-y-4 animate-slide-up">
+<div class="glass-card p-6 rounded-2xl border border-outline-variant/20 shadow-2xl max-w-xs hover:border-emerald-500/30 transition-colors duration-500">
+<h3 class="font-headline font-bold text-sm text-emerald-400 mb-4 tracking-tight">MAP LEGEND</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-3 group cursor-default">
+<div class="w-4 h-4 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[10px] text-on-primary">nature_people</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium group-hover:text-emerald-100 transition-colors">National Parks</span>
+</div>
+<div class="flex items-center gap-3 group cursor-default">
+<div class="w-8 h-[2px] bg-tertiary opacity-60 group-hover:opacity-100 transition-opacity"></div>
+<span class="text-xs text-on-surface-variant font-medium group-hover:text-tertiary transition-colors">Glacial Rivers</span>
+</div>
+<div class="flex items-center gap-3 group cursor-default">
+<div class="w-4 h-4 rounded-full bg-zinc-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[10px] text-zinc-900">filter_hdr</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium group-hover:text-white transition-colors">Major Peaks</span>
+</div>
+<div class="flex items-center gap-3 group cursor-default">
+<div class="w-4 h-4 rounded-full border border-dashed border-zinc-500 group-hover:border-zinc-300 transition-colors"></div>
+<span class="text-xs text-on-surface-variant font-medium group-hover:text-zinc-300 transition-colors">Unexplored Quests</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Detail Glassmorphic Sidebar -->
+<div class="absolute top-24 right-8 w-80 animate-slide-left">
+<div class="glass-card rounded-3xl border border-outline-variant/20 shadow-2xl overflow-hidden group hover:border-emerald-500/20 transition-all duration-500">
+<div class="h-40 bg-cover bg-center relative overflow-hidden" data-alt="A bengal tiger peering through tall golden forest grass" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtNW7rm6_UvEaLhBAQ_-1R8ZNL012WMQjKCYBe_M3qhJxqKdpWS6Mi69Xvo1B6mVno3GK8mjCra0SKkvvZUN7U8AHdFwyCtbcaLvnEUbfkFZu5ubJHGv7uhFE7d64swDoa5Mk46aKquEa1sv2RLnqTxBuVkcEy-ElSxK8p2UCHquAX0mIf43ED7HL1-lR3tQVbG85ywEKpuq8lN-DHsrYxyC13PeGfM0YiYUPn7Y0ynVZO0d713Hn5bT6I6bNAT0oeJ3eefRUclw')">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
+<button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white/70 hover:text-white hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold rounded-full uppercase tracking-widest">Protected Area</span>
+<span class="text-[9px] text-zinc-500 uppercase font-medium">Established 1936</span>
+</div>
+<h4 class="font-headline font-extrabold text-xl text-white mb-2 leading-tight">Jim Corbett National Park</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-6">A dense forest sprawl known as the Biodiversity Hub of India. It sits in the foothills of the Himalayas.</p>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/10 hover:border-emerald-500/10 transition-colors">
+<p class="text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-2">Endangered Species</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary animate-pulse" data-icon="pets">pets</span>
+<span class="text-sm font-semibold text-zinc-200">Bengal Tiger</span>
+</div>
+</div>
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-full text-xs shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+                                START QUEST: THE STRIPED SHADOW
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Controls -->
+<div class="fixed bottom-8 right-8 flex flex-col gap-3 z-50">
+<button class="w-12 h-12 glass-card rounded-full flex items-center justify-center border border-outline-variant/20 hover:bg-surface-bright hover:scale-110 active:scale-90 transition-all shadow-lg group">
+<span class="material-symbols-outlined group-hover:text-emerald-400 transition-colors" data-icon="add">add</span>
+</button>
+<button class="w-12 h-12 glass-card rounded-full flex items-center justify-center border border-outline-variant/20 hover:bg-surface-bright hover:scale-110 active:scale-90 transition-all shadow-lg group">
+<span class="material-symbols-outlined group-hover:text-emerald-400 transition-colors" data-icon="remove">remove</span>
+</button>
+<button class="w-12 h-12 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(88,214,241,0.3)] hover:scale-115 active:scale-90 hover:rotate-12 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="my_location" style="font-variation-settings: 'FILL' 1;">my_location</span>
+</button>
+</div>
+</main>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-zinc-950/80 backdrop-blur-xl border-t border-emerald-900/20 px-6 py-4 flex justify-around items-center z-50">
+<a class="flex flex-col items-center gap-1 text-zinc-500 hover:text-emerald-400 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">Quests</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-emerald-400" href="#">
+<span class="material-symbols-outlined" data-icon="explore" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">Map</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-zinc-500 hover:text-emerald-400 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">Games</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-zinc-500 hover:text-emerald-400 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[9px] font-bold uppercase tracking-tighter">Profile</span>
+</a>
+</nav>
+<!-- Footer Overlay -->
+<div class="fixed bottom-4 left-64 right-0 pointer-events-none px-8 hidden md:block opacity-50">
+<p class="text-[10px] text-zinc-600 font-medium">© 2024 YUKTI UTTARAKHAND. GEOSPATIAL DATA V1.2.0</p>
+</div>
+</body></html>

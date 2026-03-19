@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>YUKTI | Progress Journey</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#690005",
+              "surface-container-high": "#282a2a",
+              "surface-bright": "#383939",
+              "primary-fixed-dim": "#95d4b3",
+              "secondary-container": "#29513f",
+              "surface-variant": "#333535",
+              "surface-container": "#1e2020",
+              "on-secondary": "#0e3727",
+              "tertiary": "#58d6f1",
+              "surface-container-highest": "#333535",
+              "surface-dim": "#121414",
+              "on-primary-fixed": "#002114",
+              "outline-variant": "#404944",
+              "outline": "#8a938d",
+              "on-tertiary": "#00363f",
+              "on-primary-fixed-variant": "#0e5138",
+              "tertiary-fixed-dim": "#58d6f1",
+              "surface-container-lowest": "#0d0f0f",
+              "on-primary-container": "#7fbd9d",
+              "primary-fixed": "#b1f0ce",
+              "on-tertiary-fixed": "#001f25",
+              "error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#004e5b",
+              "primary-container": "#074d34",
+              "surface-tint": "#95d4b3",
+              "inverse-surface": "#e2e2e2",
+              "surface-container-low": "#1a1c1c",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#a7edff",
+              "tertiary-container": "#004a56",
+              "on-background": "#e2e2e2",
+              "surface": "#121414",
+              "inverse-on-surface": "#2f3131",
+              "on-tertiary-container": "#38bfd9",
+              "on-secondary-fixed": "#002114",
+              "on-error-container": "#ffdad6",
+              "on-primary": "#003824",
+              "background": "#121414",
+              "secondary-fixed-dim": "#a5d0b9",
+              "primary": "#95d4b3",
+              "inverse-primary": "#2c694e",
+              "on-surface": "#e2e2e2",
+              "secondary": "#a5d0b9",
+              "on-secondary-container": "#97c2ab",
+              "on-surface-variant": "#bfc9c3",
+              "secondary-fixed": "#c1ecd4",
+              "on-secondary-fixed-variant": "#274e3d"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            animation: {
+              'progress-fill': 'progress-fill 1.5s ease-out forwards',
+              'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+              'badge-reveal': 'badge-reveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+              'pulse-glow': 'pulse-glow 3s infinite ease-in-out',
+            },
+            keyframes: {
+              'progress-fill': {
+                '0%': { width: '0%' },
+                '100%': { width: 'var(--target-width)' },
+              },
+              'fade-in-up': {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              'badge-reveal': {
+                '0%': { opacity: '0', transform: 'scale(0.8) rotate(-10deg)' },
+                '100%': { opacity: '1', transform: 'scale(1) rotate(0deg)' },
+              },
+              'pulse-glow': {
+                '0%, 100%': { boxShadow: '0 0 15px rgba(149, 212, 179, 0.2)' },
+                '50%': { boxShadow: '0 0 30px rgba(149, 212, 179, 0.5)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background-color: rgba(30, 32, 32, 0.7);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(88, 214, 241, 0.3);
+        }
+        .radar-grid {
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+        .animate-delay-100 { animation-delay: 100ms; }
+        .animate-delay-200 { animation-delay: 200ms; }
+        .animate-delay-300 { animation-delay: 300ms; }
+        .animate-delay-400 { animation-delay: 400ms; }
+        .animate-delay-500 { animation-delay: 500ms; }
+        
+        /* Custom fill logic for progress bars */
+        .progress-bar-fill {
+            width: 0%;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-primary min-h-screen">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full px-6 py-4 flex justify-between items-center bg-emerald-950/40 backdrop-blur-xl z-50 shadow-[0_0_40px_rgba(226,226,226,0.06)]">
+<div class="text-2xl font-black text-emerald-400 tracking-tighter font-headline">YUKTI</div>
+<div class="hidden md:flex items-center gap-8 font-headline tracking-tight">
+<a class="text-emerald-100/70 hover:text-emerald-100 hover:bg-emerald-800/30 transition-all duration-300 px-3 py-1 rounded" href="#">Quests</a>
+<a class="text-emerald-100/70 hover:text-emerald-100 hover:bg-emerald-800/30 transition-all duration-300 px-3 py-1 rounded" href="#">Map</a>
+<a class="text-emerald-100/70 hover:text-emerald-100 hover:bg-emerald-800/30 transition-all duration-300 px-3 py-1 rounded" href="#">Games</a>
+<a class="text-emerald-300 font-bold border-b-2 border-emerald-400 pb-1" href="#">Progress</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-emerald-400 cursor-pointer hover:scale-95 active:scale-90 transition-all">eco</span>
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Student Profile Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJWqI-uPXkR618-Jpe3SiXGFc6cPC0eh7obzGGzcUwy6KbMc86nLBtTblwkMj6z9LxX-tQJfKpMxJguJOsMCF43X7bECteXscagXy5wzAI7Uq7iFvnMxtnQikxFMYZGLK1T3PoROtY0v5WdKglHurLUZdIgWhW2XAxxD5GYbx3sNp6SBHo4zLSV2RAWqk3vvvNUocXZNi39wGH-C6SMpBQNLcG54H_IC8byY036w0I_ooZ_DMwSUVLETBgEkpa1aLDQgwp9-0i-w"/>
+</div>
+</div>
+</nav>
+<!-- Side Navigation (Web) -->
+<aside class="hidden lg:flex flex-col h-screen w-64 fixed left-0 top-0 pt-24 pb-8 px-4 bg-zinc-950/60 backdrop-blur-2xl z-40">
+<div class="mb-10 px-4 animate-fade-in-up">
+<h2 class="text-xl font-bold text-emerald-500 font-headline">Garhwal Explorer</h2>
+<p class="text-zinc-400 text-sm">Level 12 Forest Guard</p>
+</div>
+<div class="flex flex-col gap-2 grow">
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 transition-all duration-200 ease-out rounded-lg" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="font-medium">Quests</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 transition-all duration-200 ease-out rounded-lg" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-medium">Map</span>
+</a>
+<a class="flex items-center gap-3 text-zinc-400 px-4 py-3 hover:bg-zinc-800/50 hover:text-emerald-200 transition-all duration-200 ease-out rounded-lg" href="#">
+<span class="material-symbols-outlined">videogame_asset</span>
+<span class="font-medium">Games</span>
+</a>
+<a class="flex items-center gap-3 bg-emerald-500/20 text-emerald-300 rounded-lg px-4 py-3 border-l-4 border-emerald-400 transition-all duration-200 ease-out" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-medium">Progress</span>
+</a>
+</div>
+<button class="bg-primary-container text-primary-fixed py-3 px-4 rounded-full font-bold text-sm tracking-wide shadow-lg hover:scale-[1.02] active:scale-95 transition-all">
+        View Leaderboard
+    </button>
+</aside>
+<main class="lg:pl-64 pt-24 pb-20 px-6 max-w-7xl mx-auto">
+<!-- Hero: Impact Overview (Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+<div class="md:col-span-2 glass-panel p-8 rounded-3xl relative overflow-hidden group animate-fade-in-up">
+<div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">landscape</span>
+</div>
+<h3 class="font-label text-xs tracking-[0.2em] text-tertiary mb-2 uppercase">Your Trajectory</h3>
+<h1 class="font-headline text-4xl font-extrabold text-on-surface mb-6 tracking-tight leading-none">The Himalayan Path</h1>
+<div class="flex flex-wrap gap-12 mt-8">
+<div class="animate-fade-in-up animate-delay-100 opacity-0">
+<div class="text-4xl font-black text-primary font-headline">12.4<span class="text-lg ml-1 font-medium text-outline">kg</span></div>
+<p class="text-sm text-on-surface-variant font-medium mt-1">CO2 Saved</p>
+</div>
+<div class="animate-fade-in-up animate-delay-200 opacity-0">
+<div class="text-4xl font-black text-tertiary font-headline">84<span class="text-lg ml-1 font-medium text-outline">hrs</span></div>
+<p class="text-sm text-on-surface-variant font-medium mt-1">Learning Time</p>
+</div>
+<div class="animate-fade-in-up animate-delay-300 opacity-0">
+<div class="text-4xl font-black text-secondary font-headline">42</div>
+<p class="text-sm text-on-surface-variant font-medium mt-1">Trees Impacted</p>
+</div>
+</div>
+</div>
+<div class="glass-panel p-8 rounded-3xl flex flex-col justify-between animate-fade-in-up animate-delay-200 opacity-0">
+<div>
+<h3 class="font-label text-xs tracking-[0.2em] text-outline mb-4 uppercase">Daily Streak</h3>
+<div class="flex items-center gap-4">
+<div class="relative w-16 h-16 flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-4 border-surface-container-high"></div>
+<div class="absolute inset-0 rounded-full border-4 border-tertiary border-t-transparent -rotate-45 shadow-[0_0_10px_rgba(88,214,241,0.3)] transition-transform duration-1000"></div>
+<span class="text-xl font-bold font-headline text-tertiary animate-pulse">14</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Great Progress!</p>
+<p class="text-xs text-on-surface-variant">2 days to 'Alpine' rank</p>
+</div>
+</div>
+</div>
+<button class="mt-6 w-full py-3 bg-tertiary-container text-on-tertiary-container rounded-xl font-bold text-sm hover:bg-tertiary-fixed-dim transition-colors">
+                Continue Quest
+            </button>
+</div>
+</section>
+<!-- Personal Journey Timeline -->
+<section class="mb-20">
+<h2 class="font-headline text-3xl font-bold mb-10 px-2 animate-fade-in-up">Journey Milestones</h2>
+<div class="relative pl-8 border-l-2 border-outline-variant space-y-12">
+<!-- Milestone 1 -->
+<div class="relative animate-fade-in-up animate-delay-100 opacity-0">
+<div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-primary border-4 border-surface shadow-[0_0_15px_rgba(149,212,179,0.5)]"></div>
+<div class="glass-panel p-6 rounded-2xl max-w-2xl transform hover:translate-x-2 transition-transform cursor-pointer">
+<span class="text-xs font-bold text-primary mb-2 block uppercase tracking-widest">Oct 2024</span>
+<h4 class="text-xl font-bold text-on-surface mb-2 font-headline">Reached Level 10: Valley Keeper</h4>
+<p class="text-on-surface-variant leading-relaxed">Completed all biodiversity quests in the Alaknanda region. Verified knowledge of 24 indigenous plant species.</p>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="relative animate-fade-in-up animate-delay-200 opacity-0">
+<div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-tertiary border-4 border-surface shadow-[0_0_15px_rgba(88,214,241,0.5)]"></div>
+<div class="glass-panel p-6 rounded-2xl max-w-2xl transform hover:translate-x-2 transition-transform cursor-pointer">
+<span class="text-xs font-bold text-tertiary mb-2 block uppercase tracking-widest">Sep 2024</span>
+<h4 class="text-xl font-bold text-on-surface mb-2 font-headline">Water Conservation Master</h4>
+<p class="text-on-surface-variant leading-relaxed">Saved 500 virtual gallons by optimizing community water management games. Real-world donation triggered for Dehradun check-dam project.</p>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="relative animate-fade-in-up animate-delay-300 opacity-0">
+<div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-outline border-4 border-surface opacity-50"></div>
+<div class="glass-panel p-6 rounded-2xl max-w-2xl transform hover:translate-x-2 transition-transform cursor-pointer opacity-60">
+<span class="text-xs font-bold text-outline mb-2 block uppercase tracking-widest">Aug 2024</span>
+<h4 class="text-xl font-bold text-on-surface mb-2 font-headline">The Ascent Begins</h4>
+<p class="text-on-surface-variant leading-relaxed">Onboarding complete. First 5 quests finished with a perfect accuracy score.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Analytics & Radar Chart -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+<!-- Impact Analytics -->
+<div class="space-y-8 animate-fade-in-up">
+<h2 class="font-headline text-2xl font-bold">Nature-Impact Analytics</h2>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2 items-end">
+<span class="text-sm font-semibold">Biodiversity Knowledge</span>
+<span class="text-xs text-primary">82% Mastery</span>
+</div>
+<div class="h-3 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full shadow-[0_0_10px_rgba(149,212,179,0.3)] animate-progress-fill" style="--target-width: 82%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2 items-end">
+<span class="text-sm font-semibold">Climate Mitigation</span>
+<span class="text-xs text-tertiary">65% Progress</span>
+</div>
+<div class="h-3 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full shadow-[0_0_10px_rgba(88,214,241,0.3)] animate-progress-fill animate-delay-200" style="--target-width: 65%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2 items-end">
+<span class="text-sm font-semibold">Wildlife Protection</span>
+<span class="text-xs text-secondary">48% Mastery</span>
+</div>
+<div class="h-3 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full shadow-[0_0_10px_rgba(165,208,185,0.3)] animate-progress-fill animate-delay-400" style="--target-width: 48%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Radar Chart Section -->
+<div class="glass-panel p-8 rounded-3xl flex flex-col items-center animate-fade-in-up animate-delay-200 opacity-0">
+<h3 class="font-headline text-xl font-bold mb-8 text-center">Your Impact vs Global</h3>
+<div class="relative w-64 h-64 flex items-center justify-center">
+<div class="absolute inset-0 radar-grid bg-outline-variant opacity-20 border border-outline"></div>
+<div class="absolute inset-4 radar-grid bg-outline-variant opacity-20 border border-outline"></div>
+<div class="absolute inset-8 radar-grid bg-outline-variant opacity-20 border border-outline"></div>
+<!-- User Data Overlay with Scale-in Animation -->
+<div class="absolute inset-0 radar-grid bg-tertiary/20 border-2 border-tertiary scale-75 rotate-12 shadow-[0_0_20px_rgba(88,214,241,0.4)] transition-all duration-1000 ease-out hover:scale-[0.8]"></div>
+<div class="absolute inset-0 radar-grid border-2 border-dashed border-primary/40 scale-50 -rotate-12"></div>
+</div>
+<div class="mt-8 flex gap-6 text-xs font-bold uppercase tracking-widest">
+<div class="flex items-center gap-2"><span class="w-3 h-3 bg-tertiary rounded-sm"></span> You</div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 border-2 border-dashed border-primary/40 rounded-sm"></span> Global Avg</div>
+</div>
+</div>
+</section>
+<!-- Badge Gallery -->
+<section class="mb-20">
+<h2 class="font-headline text-3xl font-bold mb-10 px-2 animate-fade-in-up">Badge Gallery</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<!-- Mountain Guardian -->
+<div class="group flex flex-col items-center animate-badge-reveal opacity-0">
+<div class="w-32 h-32 rounded-full glass-panel flex items-center justify-center mb-4 border-2 border-primary/30 relative transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 overflow-hidden">
+<div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-transparent"></div>
+<span class="material-symbols-outlined text-5xl text-primary" style="font-variation-settings: 'FILL' 1;">landscape</span>
+<div class="absolute -bottom-1 px-3 py-1 bg-surface-container text-outline text-[10px] font-black rounded-full uppercase">Locked</div>
+</div>
+<p class="font-bold text-center">Mountain Guardian</p>
+</div>
+<!-- Water Savior -->
+<div class="group flex flex-col items-center animate-badge-reveal animate-delay-100 opacity-0">
+<div class="w-32 h-32 rounded-full glass-panel flex items-center justify-center mb-4 border-2 border-tertiary relative transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 shadow-[0_10px_30px_rgba(88,214,241,0.2)] animate-pulse-glow">
+<div class="absolute inset-0 rounded-full bg-gradient-to-tr from-tertiary/20 to-transparent"></div>
+<span class="material-symbols-outlined text-5xl text-tertiary" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+<div class="absolute -bottom-1 px-3 py-1 bg-tertiary text-on-tertiary text-[10px] font-black rounded-full uppercase shadow-lg">Earned</div>
+</div>
+<p class="font-bold text-center">Water Savior</p>
+</div>
+<!-- Wildlife Advocate -->
+<div class="group flex flex-col items-center animate-badge-reveal animate-delay-200 opacity-0">
+<div class="w-32 h-32 rounded-full glass-panel flex items-center justify-center mb-4 border-2 border-secondary/30 relative transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 overflow-hidden">
+<div class="absolute inset-0 rounded-full bg-gradient-to-tr from-secondary/20 to-transparent"></div>
+<span class="material-symbols-outlined text-5xl text-secondary" style="font-variation-settings: 'FILL' 1;">cruelty_free</span>
+<div class="absolute -bottom-1 px-3 py-1 bg-surface-container text-outline text-[10px] font-black rounded-full uppercase">Locked</div>
+</div>
+<p class="font-bold text-center">Wildlife Advocate</p>
+</div>
+<!-- Forest Warden -->
+<div class="group flex flex-col items-center animate-badge-reveal animate-delay-300 opacity-0">
+<div class="w-32 h-32 rounded-full glass-panel flex items-center justify-center mb-4 border-2 border-primary relative transform group-hover:scale-110 transition-all duration-300 shadow-[0_10px_30px_rgba(149,212,179,0.2)] animate-pulse-glow" style="animation-delay: 1.5s">
+<div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-transparent"></div>
+<span class="material-symbols-outlined text-5xl text-primary" style="font-variation-settings: 'FILL' 1;">forest</span>
+<div class="absolute -bottom-1 px-3 py-1 bg-primary text-on-primary text-[10px] font-black rounded-full uppercase shadow-lg">Earned</div>
+</div>
+<p class="font-bold text-center">Forest Warden</p>
+</div>
+</div>
+</section>
+<!-- Real World Impact Section -->
+<section class="mb-20 glass-panel rounded-[3rem] p-10 md:p-16 relative overflow-hidden animate-fade-in-up">
+<div class="absolute top-0 right-0 w-1/2 h-full hidden md:block">
+<img class="w-full h-full object-cover opacity-30 mix-blend-overlay" data-alt="Dense forest landscape in Uttarakhand" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhrCPfMj0cteHbZseoXSPbL8QL5EM3-Qy6-N8DO_FR1HeIrTEuiauR0qsFt0PygEhP9QsKVG4eI0kU748yxH8pk-ucCvQMRYE-sahzTGzB58FalhShU3sLUAzaIVQf3dwiWryZyWNLVFMkut3f80VF0iEXlPkBEEM-mb0LOjk1RfRL9kaapndEAVk5IrjXJt3WavG9wQVMVIpmwRktIx2NNdumCepndShweVca_HwEjGaBER9laIPWQT5coQpw9GXLzrCPgBF2sQ"/>
+<div class="absolute inset-0 bg-gradient-to-l from-transparent to-surface-container"></div>
+</div>
+<div class="relative z-10 max-w-xl">
+<h2 class="font-headline text-4xl font-extrabold mb-6 tracking-tight">Real-World Footprint</h2>
+<p class="text-on-surface-variant text-lg mb-8 leading-relaxed">
+                Your learning points are translated into tangible action. Currently, your contribution is fueling the <strong>Reforestation of the Shivalik Hills</strong> project.
+            </p>
+<div class="space-y-4">
+<div class="flex items-center gap-4 bg-surface-container-lowest p-4 rounded-2xl hover:bg-surface-container transition-colors cursor-default">
+<span class="material-symbols-outlined text-primary text-3xl">volunteer_activism</span>
+<div>
+<p class="font-bold">8 Seedlings Sponsored</p>
+<p class="text-xs text-outline">Planted in the Kumaon region</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-lowest p-4 rounded-2xl hover:bg-surface-container transition-colors cursor-default">
+<span class="material-symbols-outlined text-tertiary text-3xl">biotech</span>
+<div>
+<p class="font-bold">120 Soil Tests Funded</p>
+<p class="text-xs text-outline">Assisting local farmers in sustainable switch</p>
+</div>
+</div>
+</div>
+<button class="mt-10 px-8 py-4 bg-primary text-on-primary font-black rounded-full hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+                See All Projects <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-zinc-950 border-t border-emerald-900/20 py-12 px-8">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
+<div>
+<div class="font-headline font-bold text-emerald-400 text-xl mb-4">YUKTI</div>
+<p class="text-zinc-500 font-body text-sm leading-6 max-w-xs">
+                © 2024 Yukti Uttarakhand. For the Peaks and Pines. Empowering students through environmental stewardship.
+            </p>
+</div>
+<div class="flex flex-col md:flex-row gap-12">
+<div class="flex flex-col gap-3">
+<h5 class="text-emerald-500 font-bold text-sm uppercase tracking-widest mb-2">Platform</h5>
+<a class="text-zinc-500 hover:text-emerald-300 transition-transform hover:translate-y-[-2px] text-sm" href="#">Conservation Efforts</a>
+<a class="text-zinc-500 hover:text-emerald-300 transition-transform hover:translate-y-[-2px] text-sm" href="#">Educational Resources</a>
+<a class="text-zinc-500 hover:text-emerald-300 transition-transform hover:translate-y-[-2px] text-sm" href="#">Credits</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="text-emerald-500 font-bold text-sm uppercase tracking-widest mb-2">Social</h5>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer hover:text-emerald-400">public</span>
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer hover:text-emerald-400">group</span>
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer hover:text-emerald-400">shield_with_heart</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- Mobile Navigation Bar -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-emerald-950/40 backdrop-blur-xl flex justify-around py-4 z-50">
+<span class="material-symbols-outlined text-emerald-100/70">assignment_turned_in</span>
+<span class="material-symbols-outlined text-emerald-100/70">explore</span>
+<span class="material-symbols-outlined text-emerald-100/70">videogame_asset</span>
+<span class="material-symbols-outlined text-emerald-300 font-bold border-b-2 border-emerald-400 pb-1">query_stats</span>
+</div>
+</body></html>

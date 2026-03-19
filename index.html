@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>YUKTI — AI Based Gamified Environmental Learning Platform</title>
+  <meta name="description" content="YUKTI is an AI-powered, gamified environmental learning platform for Uttarakhand. Explore the Himalayas through interactive quests, mini-games, and immersive maps."/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-error": "#690005",
+            "surface-container-high": "#282a2a",
+            "surface-bright": "#383939",
+            "primary-fixed-dim": "#95d4b3",
+            "secondary-container": "#29513f",
+            "surface-variant": "#333535",
+            "surface-container": "#1e2020",
+            "on-secondary": "#0e3727",
+            "tertiary": "#58d6f1",
+            "surface-container-highest": "#333535",
+            "surface-dim": "#121414",
+            "on-primary-fixed": "#002114",
+            "outline-variant": "#404944",
+            "outline": "#8a938d",
+            "on-tertiary": "#00363f",
+            "on-primary-fixed-variant": "#0e5138",
+            "tertiary-fixed-dim": "#58d6f1",
+            "surface-container-lowest": "#0d0f0f",
+            "on-primary-container": "#7fbd9d",
+            "primary-fixed": "#b1f0ce",
+            "on-tertiary-fixed": "#001f25",
+            "error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#004e5b",
+            "primary-container": "#074d34",
+            "surface-tint": "#95d4b3",
+            "inverse-surface": "#e2e2e2",
+            "surface-container-low": "#1a1c1c",
+            "error": "#ffb4ab",
+            "tertiary-fixed": "#a7edff",
+            "tertiary-container": "#004a56",
+            "on-background": "#e2e2e2",
+            "surface": "#121414",
+            "inverse-on-surface": "#2f3131",
+            "on-tertiary-container": "#38bfd9",
+            "on-secondary-fixed": "#002114",
+            "on-error-container": "#ffdad6",
+            "on-primary": "#003824",
+            "background": "#121414",
+            "secondary-fixed-dim": "#a5d0b9",
+            "primary": "#95d4b3",
+            "inverse-primary": "#2c694e",
+            "on-surface": "#e2e2e2",
+            "secondary": "#a5d0b9",
+            "on-secondary-container": "#97c2ab",
+            "on-surface-variant": "#bfc9c3",
+            "secondary-fixed": "#c1ecd4",
+            "on-secondary-fixed-variant": "#274e3d"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          keyframes: {
+            'fade-up': {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'parallax-zoom': {
+              '0%': { transform: 'scale(1.1)' },
+              '100%': { transform: 'scale(1.2)' },
+            },
+            'float-serenity': {
+              '0%, 100%': { transform: 'translateY(0) scale(1)' },
+              '50%': { transform: 'translateY(-10px) scale(1.02)' },
+            },
+            'width-expand': {
+              '0%': { width: '0%' },
+              '100%': { width: '100%' },
+            },
+            'glow-pulse': {
+              '0%, 100%': { opacity: '1', filter: 'brightness(1) drop-shadow(0 0 5px rgba(149, 212, 179, 0.4))' },
+              '50%': { opacity: '0.8', filter: 'brightness(1.2) drop-shadow(0 0 15px rgba(149, 212, 179, 0.7))' },
+            },
+            'mist-in': {
+              '0%': { opacity: '0', transform: 'translateY(8px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'nav-slide-down': {
+              '0%': { opacity: '0', transform: 'translateY(-100%)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          },
+          animation: {
+            'fade-up': 'fade-up 0.8s ease-out forwards',
+            'parallax-slow': 'parallax-zoom 20s ease-in-out infinite alternate',
+            'serenity': 'float-serenity 6s ease-in-out infinite',
+            'expand': 'width-expand 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards',
+            'glow': 'glow-pulse 3s ease-in-out infinite',
+            'mist-in': 'mist-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+            'nav-slide': 'nav-slide-down 0.5s ease-out forwards',
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    /* Design System Core Styles */
+    .glass-card {
+      background: rgba(30, 32, 32, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .mist-gradient {
+      background: linear-gradient(to bottom, transparent, #121414);
+    }
+    .text-glow {
+      text-shadow: 0 0 20px rgba(149, 212, 179, 0.3);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+
+    /* Page Transition Styles */
+    #page-content {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #page-content.page-exit {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    #page-content.page-enter {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    /* Main Nav Styles */
+    .yukti-main-nav {
+      background: rgba(6, 40, 28, 0.65);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 0 40px rgba(149, 212, 179, 0.06);
+    }
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #95d4b3, transparent);
+      transition: transform 0.3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+    .nav-link.active {
+      color: #95d4b3 !important;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #121414; }
+    ::-webkit-scrollbar-thumb { background: #404944; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #8a938d; }
+
+    /* Loading spinner */
+    .yukti-loader {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #1e2020;
+      border-top-color: #95d4b3;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Mobile nav */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary selection:text-on-primary overflow-x-hidden">
+
+  <!-- ═══════════ GLOBAL NAVIGATION ═══════════ -->
+  <nav id="main-nav" class="yukti-main-nav fixed top-0 w-full px-6 py-3 flex justify-between items-center z-[100] animate-nav-slide">
+    <a href="#landing" class="flex items-center gap-2 group">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-on-primary text-xl">eco</span>
+      </div>
+      <span class="text-2xl font-black text-primary tracking-tighter font-headline">YUKTI</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden lg:flex gap-1 items-center bg-surface-container-lowest/50 rounded-full px-2 py-1">
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#landing" data-page="landing">
+        <span class="material-symbols-outlined text-base align-middle mr-1">home</span>Home
+      </a>
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#dashboard" data-page="dashboard">
+        <span class="material-symbols-outlined text-base align-middle mr-1">dashboard</span>Dashboard
+      </a>
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#quiz" data-page="quiz">
+        <span class="material-symbols-outlined text-base align-middle mr-1">quiz</span>Quiz
+      </a>
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#games" data-page="games">
+        <span class="material-symbols-outlined text-base align-middle mr-1">videogame_asset</span>Games
+      </a>
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#map" data-page="map">
+        <span class="material-symbols-outlined text-base align-middle mr-1">explore</span>Map
+      </a>
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#progress" data-page="progress">
+        <span class="material-symbols-outlined text-base align-middle mr-1">trending_up</span>Progress
+      </a>
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#teacher" data-page="teacher">
+        <span class="material-symbols-outlined text-base align-middle mr-1">school</span>Teacher
+      </a>
+      <a class="nav-link text-on-surface-variant hover:text-on-surface transition-all duration-300 font-headline text-sm tracking-tight px-4 py-2 rounded-full hover:bg-surface-container" href="#chatbot" data-page="chatbot">
+        <span class="material-symbols-outlined text-base align-middle mr-1">smart_toy</span>AI
+      </a>
+    </div>
+
+    <!-- Profile + Mobile Toggle -->
+    <div class="flex items-center gap-3">
+      <button class="text-primary hover:bg-primary/10 transition-all duration-300 p-2 rounded-full animate-glow hidden lg:block">
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+      <div class="w-9 h-9 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20 hover:border-primary/50 transition-colors hidden lg:block">
+        <img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUElCzflXRj02J6oSUd3hE0ksIaNI0rSKUi4GG_BJUSXOpk7EQkUwrjS_d4kwZIwO5QUmF1O4twwCpS_RlQtZXliOUUqGh_FZ_dr4AT4EasF8DMeXg-maa3-Z1VnHb6tG0-277RNgLnU1P8VJdEtHBN1ILLXUzq_8npHBvN2_clYDIxZcfTeLbT20uohoAKglxtuV7ShcE7JizGCQqnn1mgeioLIdFxaJ133idf0CaxAP56xSSagLmmpGtmu4o_9wul8Oc5_CrnA"/>
+      </div>
+      <!-- Mobile hamburger -->
+      <button id="mobile-toggle" class="lg:hidden p-2 rounded-xl hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-on-surface">menu</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════ MOBILE MENU ═══════════ -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-72 h-full bg-surface-container-lowest/95 backdrop-blur-2xl z-[200] flex flex-col pt-20 px-6 pb-8 lg:hidden">
+    <button id="mobile-close" class="absolute top-4 right-4 p-2 rounded-xl hover:bg-surface-container transition-colors">
+      <span class="material-symbols-outlined text-on-surface">close</span>
+    </button>
+    <div class="flex flex-col gap-1">
+      <a class="mobile-nav-link flex items-center gap-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all duration-300 font-headline text-base px-4 py-3 rounded-xl" href="#landing" data-page="landing">
+        <span class="material-symbols-outlined">home</span>Home
+      </a>
+      <a class="mobile-nav-link flex items-center gap-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all duration-300 font-headline text-base px-4 py-3 rounded-xl" href="#dashboard" data-page="dashboard">
+        <span class="material-symbols-outlined">dashboard</span>Dashboard
+      </a>
+      <a class="mobile-nav-link flex items-center gap-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all duration-300 font-headline text-base px-4 py-3 rounded-xl" href="#quiz" data-page="quiz">
+        <span class="material-symbols-outlined">quiz</span>Quiz
+      </a>
+      <a class="mobile-nav-link flex items-center gap-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all duration-300 font-headline text-base px-4 py-3 rounded-xl" href="#games" data-page="games">
+        <span class="material-symbols-outlined">videogame_asset</span>Games
+      </a>
+      <a class="mobile-nav-link flex items-center gap-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all duration-300 font-headline text-base px-4 py-3 rounded-xl" href="#map" data-page="map">
+        <span class="material-symbols-outlined">explore</span>Map
+      </a>
+      <a class="mobile-nav-link flex items-center gap-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all duration-300 font-headline text-base px-4 py-3 rounded-xl" href="#progress" data-page="progress">
+        <span class="material-symbols-outlined">trending_up</span>Progress
+      </a>
+      <a class="mobile-nav-link flex items-center gap-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all duration-300 font-headline text-base px-4 py-3 rounded-xl" href="#teacher" data-page="teacher">
+        <span class="material-symbols-outlined">school</span>Teacher
+      </a>
+      <a class="mobile-nav-link flex items-center gap-3 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all duration-300 font-headline text-base px-4 py-3 rounded-xl" href="#chatbot" data-page="chatbot">
+        <span class="material-symbols-outlined">smart_toy</span>Yukti AI
+      </a>
+    </div>
+    <div class="mt-auto pt-6 border-t border-outline-variant/10">
+      <div class="flex items-center gap-3 px-4">
+        <div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20">
+          <img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUElCzflXRj02J6oSUd3hE0ksIaNI0rSKUi4GG_BJUSXOpk7EQkUwrjS_d4kwZIwO5QUmF1O4twwCpS_RlQtZXliOUUqGh_FZ_dr4AT4EasF8DMeXg-maa3-Z1VnHb6tG0-277RNgLnU1P8VJdEtHBN1ILLXUzq_8npHBvN2_clYDIxZcfTeLbT20uohoAKglxtuV7ShcE7JizGCQqnn1mgeioLIdFxaJ133idf0CaxAP56xSSagLmmpGtmu4o_9wul8Oc5_CrnA"/>
+        </div>
+        <div>
+          <div class="text-sm font-headline font-bold text-on-surface">Garhwal Explorer</div>
+          <div class="text-xs text-on-surface-variant">Level 12 · Forest Guard</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-[150] hidden lg:hidden" style="opacity:0; transition: opacity 0.3s ease;"></div>
+
+  <!-- ═══════════ LOADING STATE ═══════════ -->
+  <div id="page-loader" class="fixed inset-0 z-50 bg-surface flex items-center justify-center" style="display:none;">
+    <div class="flex flex-col items-center gap-4">
+      <div class="yukti-loader"></div>
+      <span class="text-on-surface-variant text-sm font-label tracking-widest uppercase">Loading...</span>
+    </div>
+  </div>
+
+  <!-- ═══════════ PAGE CONTENT AREA ═══════════ -->
+  <main id="page-content" class="min-h-screen">
+    <!-- Dynamic page content loaded here -->
+  </main>
+
+  <!-- ═══════════ ROUTER SCRIPT ═══════════ -->
+  <script>
+    const pages = {
+      landing: '/pages/landing.html',
+      dashboard: '/pages/dashboard.html',
+      quiz: '/pages/quiz.html',
+      games: '/pages/games.html',
+      map: '/pages/map.html',
+      progress: '/pages/progress.html',
+      teacher: '/pages/teacher.html',
+      chatbot: '/pages/chatbot.html',
+    };
+
+    const pageCache = {};
+    const contentEl = document.getElementById('page-content');
+    const loaderEl = document.getElementById('page-loader');
+    let currentPage = null;
+
+    // Extract body content from full HTML page
+    function extractBody(html) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      // Remove the page's own nav (we have global nav)
+      const navElements = doc.querySelectorAll('nav');
+      navElements.forEach(n => {
+        // Only remove nav if it's a top-level fixed nav
+        if (n.classList.contains('fixed') && n.closest('body') === doc.body) {
+          n.remove();
+        }
+      });
+      return doc.body.innerHTML;
+    }
+
+    // Extract and run scripts from HTML
+    function executeScripts(container) {
+      const scripts = container.querySelectorAll('script');
+      scripts.forEach(oldScript => {
+        const newScript = document.createElement('script');
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+      });
+    }
+
+    // Re-initialize intersection observers for scroll animations
+    function initScrollAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-up');
+            entry.target.classList.remove('opacity-0');
+          }
+        });
+      }, observerOptions);
+      document.querySelectorAll('#page-content .opacity-0').forEach(el => observer.observe(el));
+    }
+
+    // Load a page
+    async function loadPage(pageName) {
+      if (pageName === currentPage) return;
+      if (!pages[pageName]) pageName = 'landing';
+
+      currentPage = pageName;
+
+      // Page exit animation
+      contentEl.classList.add('page-exit');
+
+      // Show loader for uncached pages
+      let showLoader = false;
+      if (!pageCache[pageName]) {
+        showLoader = true;
+        setTimeout(() => {
+          if (showLoader) {
+            loaderEl.style.display = 'flex';
+          }
+        }, 200);
+      }
+
+      // Wait for exit animation
+      await new Promise(r => setTimeout(r, 350));
+
+      // Fetch page if not cached
+      if (!pageCache[pageName]) {
+        try {
+          const resp = await fetch(pages[pageName]);
+          const html = await resp.text();
+          pageCache[pageName] = extractBody(html);
+        } catch (err) {
+          pageCache[pageName] = `<div class="flex items-center justify-center min-h-screen"><p class="text-error">Failed to load page.</p></div>`;
+        }
+      }
+
+      showLoader = false;
+      loaderEl.style.display = 'none';
+
+      // Insert content
+      contentEl.innerHTML = pageCache[pageName];
+
+      // Execute inline scripts
+      executeScripts(contentEl);
+
+      // Reset scroll
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      // Page enter animation
+      contentEl.classList.remove('page-exit');
+      contentEl.classList.add('page-enter');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          contentEl.classList.remove('page-enter');
+        });
+      });
+
+      // Re-init scroll animations
+      setTimeout(initScrollAnimations, 100);
+
+      // Update active nav link
+      updateActiveNav(pageName);
+
+      // Close mobile menu if open
+      closeMobileMenu();
+    }
+
+    // Update active nav link styling
+    function updateActiveNav(pageName) {
+      document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === pageName) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    // Hash-based routing
+    function handleRoute() {
+      const hash = window.location.hash.slice(1) || 'landing';
+      loadPage(hash);
+    }
+
+    window.addEventListener('hashchange', handleRoute);
+
+    // Mobile menu
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('open');
+      mobileOverlay.style.display = 'block';
+      requestAnimationFrame(() => { mobileOverlay.style.opacity = '1'; });
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      mobileOverlay.style.opacity = '0';
+      setTimeout(() => { mobileOverlay.style.display = 'none'; }, 300);
+      document.body.style.overflow = '';
+    }
+
+    mobileToggle.addEventListener('click', openMobileMenu);
+    mobileClose.addEventListener('click', closeMobileMenu);
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+
+    // Nav hide/show on scroll
+    let lastScroll = 0;
+    const mainNav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        mainNav.style.transform = 'translateY(-100%)';
+        mainNav.style.transition = 'transform 0.35s ease';
+      } else {
+        mainNav.style.transform = 'translateY(0)';
+      }
+      lastScroll = currentScroll;
+    });
+
+    // Initial load
+    handleRoute();
+  </script>
+</body>
+</html>
