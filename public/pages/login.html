@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>YUKTI - Himalayan Digital Ledger Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-container": "#29513f",
+                        "primary-fixed-dim": "#95d4b3",
+                        "on-tertiary-container": "#38bfd9",
+                        "on-secondary-fixed": "#002114",
+                        "surface-container": "#1e2020",
+                        "on-primary": "#003824",
+                        "on-primary-container": "#7fbd9d",
+                        "surface-variant": "#333535",
+                        "surface-container-high": "#282a2a",
+                        "primary": "#95d4b3",
+                        "on-surface-variant": "#bfc9c3",
+                        "tertiary-fixed-dim": "#58d6f1",
+                        "on-tertiary-fixed-variant": "#004e5b",
+                        "surface-container-low": "#1a1c1c",
+                        "secondary-fixed-dim": "#a5d0b9",
+                        "tertiary": "#58d6f1",
+                        "on-primary-fixed": "#002114",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#00363f",
+                        "outline": "#8a938d",
+                        "on-background": "#e2e2e2",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#004a56",
+                        "surface-tint": "#95d4b3",
+                        "error-container": "#93000a",
+                        "surface-dim": "#121414",
+                        "on-error": "#690005",
+                        "primary-container": "#074d34",
+                        "on-surface": "#e2e2e2",
+                        "inverse-on-surface": "#2f3131",
+                        "surface-container-highest": "#333535",
+                        "secondary": "#a5d0b9",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-bright": "#383939",
+                        "surface": "#121414",
+                        "outline-variant": "#404944",
+                        "on-primary-fixed-variant": "#0e5138"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(30, 32, 32, 0.6);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(149, 212, 179, 0.1);
+        }
+        .bg-mist-gradient {
+            background: radial-gradient(circle at top right, rgba(149, 212, 179, 0.05), transparent),
+                        radial-gradient(circle at bottom left, rgba(88, 214, 241, 0.03), transparent);
+        }
+        .mountain-blur {
+            filter: blur(8px) brightness(0.4);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(149, 212, 179, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen selection:bg-primary selection:text-on-primary overflow-hidden">
+<!-- Background Parallax Layer -->
+<div class="fixed inset-0 z-0 overflow-hidden">
+<div class="absolute inset-0 bg-mist-gradient z-10"></div>
+<img class="w-full h-full object-cover mountain-blur scale-110" data-alt="Blurred mountain peaks of Uttarakhand in early morning mist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_jY1WHx88bDwHZhEZFGn_BDmmg99pyUaKZvtw9ltQpBRiNxuNE-SOVGB3a9IOqo7Irsayws3TnCnlsaSAHXhQP32Bxla_ygxgLBrnyLQ3yn3Qi7H7ZblhEM9nnxyBWdFB8hW_4AwVgoiRECnjMuUIgPJ8CBq5rw0paaZYfmuS385JS11cUnIGXab3SVUsT769kJ2b_6rDqzhAxcsUNw4_qMJfK7CN_XNROl3wFvb6hDzSNkCRmoS_sXWRDQlHRYvwIBXYU0Rvwg"/>
+</div>
+<!-- Navigation suppressed for focused login journey per instructions -->
+<main class="relative z-20 min-h-screen flex items-center justify-center p-6">
+<div class="w-full max-w-[480px]">
+<!-- Brand Identity -->
+<div class="text-center mb-10 space-y-2">
+<h1 class="font-headline text-5xl font-extrabold tracking-tighter text-primary">
+                    YUKTI
+                </h1>
+<p class="font-label text-xs tracking-[0.2em] text-on-surface-variant uppercase">
+                    The Himalayan Digital Ledger
+                </p>
+</div>
+<!-- Login Card -->
+<div class="glass-card rounded-[2rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+<!-- Inner Glow Pulse -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-tertiary/10 rounded-full blur-[80px]"></div>
+<!-- Tab Toggle -->
+<div class="flex p-1 bg-surface-container-lowest rounded-full mb-10 relative">
+<button class="flex-1 py-3 px-4 rounded-full text-sm font-semibold font-headline transition-all duration-300 bg-primary text-on-primary z-10">
+                        Student Login
+                    </button>
+<button class="flex-1 py-3 px-4 rounded-full text-sm font-semibold font-headline transition-all duration-300 text-on-surface-variant hover:text-on-surface z-10">
+                        Teacher Portal
+                    </button>
+</div>
+<!-- Form Section -->
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="block font-label text-xs font-semibold text-on-surface-variant px-1 uppercase tracking-wider">
+                            Email or Student ID
+                        </label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">alternate_email</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-2xl py-4 pl-12 pr-4 text-on-surface placeholder:text-outline/50 focus:ring-2 focus:ring-primary/40 transition-all font-body" placeholder="name@ledger.edu.in" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<label class="block font-label text-xs font-semibold text-on-surface-variant uppercase tracking-wider">
+                                Password
+                            </label>
+<a class="text-xs font-medium text-tertiary hover:underline" href="#">Forgot Password?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-2xl py-4 pl-12 pr-4 text-on-surface placeholder:text-outline/50 focus:ring-2 focus:ring-primary/40 transition-all font-body" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container py-5 rounded-2xl font-headline font-bold text-on-primary tracking-tight transition-all duration-300 glow-hover active:scale-[0.98] shadow-lg shadow-primary/20" type="submit">
+                        Access Observatory
+                    </button>
+</form>
+<!-- Divider -->
+<div class="relative my-10">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant/30"></div></div>
+<div class="relative flex justify-center text-xs uppercase font-label tracking-widest text-outline/60 bg-transparent">
+<span class="px-4 bg-[#1e2020]">Institutional Access</span>
+</div>
+</div>
+<!-- SSO Options -->
+<div class="grid grid-cols-2 gap-4">
+<button id="google-sso-btn" type="button" class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 hover:border-primary/40 transition-all group cursor-pointer">
+<img class="w-5 h-5 grayscale group-hover:grayscale-0 transition-all" data-alt="Google colorful G logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCVXRVNRYmLreM_hqv2SRWdIiuxb42Utn1nG2kDcPVHXQ0v2uFICXhdc0dssspIqGCxfxwpLWy87C2v3cJEk0KC9wyn944KRAF7Qkn4nHaPH6vvKH7hMR2rWpj9xmWvg-k7KXWtXoHwlhQya-pYbH2LZtePyKfcZ6pU3XmuK5msqHNVyvIb4SHkuhw_xALJov1yKSqZLw46hJHishS5_6a8sjyx07CnBR6L9rGvh6UMDpagdS41ClJQw846xS88w0IUYRJ1FpgpA"/>
+<span class="text-sm font-medium font-body text-on-surface-variant group-hover:text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 hover:border-primary/40 transition-all group">
+<img class="w-5 h-5 grayscale group-hover:grayscale-0 transition-all" data-alt="Microsoft windows colored squares logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoOeKn-AMkEhlcwucDk65a4QSCNlse8l8IaqsNOLiUrE08xAIeAw5FsmTlvtIn0MVNAlI6UthcgOJ4ofZQNEGWPnwakmAMnAuMYRmjMjFw0ZpVRZLeILESqh51n3NBXoXjf5BSGPTkDn5K0AH7dcWB32cjx32WqIHKF4AZSDjNBrVI7vIFhNhfDgoSXyuqwfmfgeevXd1-83Ex7qGsbzlFs_Clu8B-FqFjBaGENH-CNuWMwBxnp83gLaiLIJSqxvj_XG-t5ujTGQ"/>
+<span class="text-sm font-medium font-body text-on-surface-variant group-hover:text-on-surface">Microsoft</span>
+</button>
+</div>
+</div>
+<!-- Footer Meta -->
+<p class="text-center mt-8 text-on-surface-variant/60 text-sm font-body">
+                First time exploring? 
+                <a class="text-primary font-semibold hover:underline decoration-primary/30 underline-offset-4" href="#">Register your school</a>
+</p>
+</div>
+</main>
+<!-- Essential Footer Component from Shared JSON -->
+<footer class="fixed bottom-0 w-full z-40 flex justify-between items-center px-10 py-8 bg-transparent">
+<div class="font-body text-sm leading-relaxed text-slate-500">
+            © 2024 The Himalayan Digital Ledger. Uttarakhand Environmental Education.
+        </div>
+<div class="flex gap-6">
+<a class="font-body text-sm text-slate-500 hover:text-emerald-300 transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body text-sm text-slate-500 hover:text-emerald-300 transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-body text-sm text-slate-500 hover:text-emerald-300 transition-all opacity-80 hover:opacity-100" href="#">Sustainability Report</a>
+</div>
+</footer>
+<!-- Atmosphere Details -->
+<div class="fixed top-12 left-12 z-10 pointer-events-none opacity-20">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-tertiary animate-pulse shadow-[0_0_15px_#58d6f1]"></div>
+<span class="text-xs font-label tracking-widest text-on-surface uppercase">Observatory Active</span>
+</div>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer data-component-script="true"></script>
+<script data-component-script="true">
+  document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    localStorage.setItem('yukti-auth-token', 'true');
+    window.location.hash = '#dashboard';
+  });
+
+  const googleBtn = document.getElementById('google-sso-btn');
+  if (googleBtn) {
+    googleBtn.addEventListener('click', () => {
+      const client = google.accounts.oauth2.initCodeClient({
+        client_id: '98512503675-m0ih7ngfrj0u33g4u284ocsq7da5ukmg.apps.googleusercontent.com',
+        scope: 'email profile',
+        ux_mode: 'popup',
+        callback: async (response) => {
+          if (response.code) {
+            try {
+              const res = await fetch('http://localhost:3000/api/auth/google', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: response.code })
+              });
+
+              if (res.ok) {
+                const data = await res.json();
+                if (data.success) {
+                  localStorage.setItem('yukti-auth-token', 'true');
+                  window.location.hash = '#dashboard';
+                }
+              } else {
+                const err = await res.json();
+                console.error('Auth failure:', err);
+                alert('Authentication backend error: ' + (err.error || 'Unknown error'));
+              }
+            } catch (err) {
+              console.error('Cannot reach backend', err);
+              alert('Could not reach backend identity server. Ensure it is running on port 3000.');
+            }
+          }
+        },
+      });
+      client.requestCode();
+    });
+  }
+</script>
+</body></html>

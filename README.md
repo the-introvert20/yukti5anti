@@ -16,10 +16,11 @@
 ## 🛠 Tech Stack
 
 - **Frontend**: HTML5, Vanilla JavaScript (ES6+), CSS3
+- **Backend (Auth)**: Node.js, Express, `google-auth-library`, JSONWebToken (JWT) for secure session cookies
 - **Styling**: Tailwind CSS (via CDN with custom configurations)
 - **Icons & Fonts**: Google Material Symbols, Google Fonts (Inter, Manrope)
 - **AI Integration**: Groq API (LLaMA-3.3-70b-versatile) for conversational AI
-- **Deployment & Tooling**: Vite (Dev Server)
+- **Deployment & Tooling**: Vite (Dev Server), Jest (Test Suite)
 
 ## 🚀 Getting Started
 
@@ -38,8 +39,16 @@ To run the YUKTI platform locally:
      const GROQ_API_KEY = 'your_groq_api_key_here';
      ```
 
-3. **Run the Development Server**
-   - The project uses Vite for lightning-quick local development.
+3. **Configure Google OAuth 2.0 Backend**
+   - The application uses a local Node.js backend for secure PKCE token validation.
+   - Navigate into the `/server` directory: `cd server`
+   - Install backend dependencies: `npm install`
+   - Copy the `.env.example` file to `.env` and fill in your Google Client ID and Client Secret (`GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`).
+   - Run the backend: `npm run dev`
+
+4. **Run the Development Frontend Server**
+   - In a separate terminal, navigate back to the root `yukti5anti` folder.
+   - Run Vite:
    ```bash
    npm install
    npm run dev
@@ -52,6 +61,7 @@ To run the YUKTI platform locally:
 
 The project works as a lightweight Single Page Application (SPA), routing logic relies on native hashchanges and `fetch()` to fetch and parse individual raw HTML files located in the `public/pages/` directory dynamically into the DOM.
 
+- `server/`: Houses the Express backend, handling PKCE code exchanges, API rate-limiting, secure `httpOnly` sessions, and logging.
 - `index.html`: The main application shell (Navbar, Theme Controller, AI Chatbot).
 - `public/pages/landing.html`: Entry splash page.
 - `public/pages/dashboard.html`: The core player perspective with active quests and stats.

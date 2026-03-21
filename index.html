@@ -877,8 +877,8 @@
         class="text-primary hover:bg-primary/10 transition-all duration-300 p-2 rounded-full animate-glow hidden lg:block">
         <span class="material-symbols-outlined">notifications</span>
       </button>
-      <div
-        class="w-9 h-9 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20 hover:border-primary/50 transition-colors hidden lg:block">
+      <div onclick="window.logout()" title="Logout"
+        class="cursor-pointer w-9 h-9 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20 hover:border-primary/50 transition-colors hidden lg:block">
         <img alt="Profile" class="w-full h-full object-cover"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUElCzflXRj02J6oSUd3hE0ksIaNI0rSKUi4GG_BJUSXOpk7EQkUwrjS_d4kwZIwO5QUmF1O4twwCpS_RlQtZXliOUUqGh_FZ_dr4AT4EasF8DMeXg-maa3-Z1VnHb6tG0-277RNgLnU1P8VJdEtHBN1ILLXUzq_8npHBvN2_clYDIxZcfTeLbT20uohoAKglxtuV7ShcE7JizGCQqnn1mgeioLIdFxaJ133idf0CaxAP56xSSagLmmpGtmu4o_9wul8Oc5_CrnA" />
       </div>
@@ -1040,6 +1040,7 @@ Rules:
     // ─── PAGES / ROUTER ───
     const pages = {
       landing: '/pages/landing.html',
+      login: '/pages/login.html',
       dashboard: '/pages/dashboard.html',
       quiz: '/pages/quiz.html',
       games: '/pages/games.html',
@@ -1083,6 +1084,16 @@ Rules:
       });
     }
 
+    window.logout = async function() {
+      try {
+        await fetch('http://localhost:3000/api/auth/logout', { method: 'POST' });
+      } catch (e) {
+        console.error('Backend logout unreachable', e);
+      }
+      localStorage.removeItem('yukti-auth-token');
+      window.location.hash = '#login';
+    };
+
     function initScrollAnimations() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1098,6 +1109,24 @@ Rules:
     async function loadPage(pageName) {
       if (pageName === currentPage) return;
       if (!pages[pageName]) pageName = 'landing';
+
+      const isAuthenticated = localStorage.getItem('yukti-auth-token') === 'true';
+      const isPublic = pageName === 'landing' || pageName === 'login';
+
+      if (!isAuthenticated && !isPublic) {
+        window.location.hash = '#login';
+        return;
+      }
+      if (isAuthenticated && pageName === 'login') {
+        window.location.hash = '#dashboard';
+        return;
+      }
+
+      const mainNav = document.getElementById('main-nav');
+      if (mainNav) {
+        mainNav.style.display = pageName === 'login' ? 'none' : 'flex';
+      }
+
       currentPage = pageName;
 
       contentEl.classList.add('page-exit');
